@@ -4,7 +4,7 @@ import { styled } from '~/theme'
 
 interface Props {
   children: string
-  type?: '4' | '5'
+  type?: '4' | '5' | '6'
   bold?: boolean
   css?: CSS
 }
@@ -19,6 +19,9 @@ const StyledSpan = styled('span', {
       },
       '5': {
         fontSize: '15px'
+      },
+      '6': {
+        fontSize: '18px'
       },
     },
     bold: {
