@@ -6,7 +6,6 @@ export type InputType = {
   label: string;
   locked?: boolean;
   type?: 'input';
-  flex?: number;
   template?: string;
 } /*& Pick<InputProps, 'placeholder' | 'keyboardType' | 'exclusionExpression' | 'noKeyboardValidation'>*/;
 

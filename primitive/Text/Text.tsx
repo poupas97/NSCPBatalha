@@ -2,10 +2,11 @@ import { CSS } from '@stitches/react'
 import React from 'react'
 import { styled } from '~/theme'
 
-interface Props {
+export interface Props {
   children: string
   type?: '4' | '5' | '6'
   bold?: boolean
+  color?: 'red'
   css?: CSS
 }
 
@@ -27,6 +28,11 @@ const StyledSpan = styled('span', {
     bold: {
       true: {
         fontWeight: 'bold'
+      }
+    },
+    color: {
+      red: {
+        color: 'red'
       }
     }
   },

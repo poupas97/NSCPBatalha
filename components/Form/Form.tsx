@@ -5,18 +5,16 @@ import React, {
   isValidElement,
   useEffect,
   useImperativeHandle,
-  useState,
 } from 'react';
 import { useFormik, } from 'formik';
 import { FormItem, FormProps, FormRefProps, InputType, Item } from './types';
 import FormInput from './FormInput';
 import Box from '~/primitive/Box';
 import { ObjectOfAny } from '~/types';
-import { FormGroup } from './styles';
+import { FormGroup } from './components';
 
 const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: ForwardedRef<FormRefProps<T>>) => {
   const { initialValue, items, validationSchema, onValidate, } = props;
-  const [currentField, setCurrentField] = useState<string>();
 
   const { handleBlur, setFieldValue, setFieldTouched, values, errors, touched, isValid, validateForm, resetForm } =
     useFormik<T>({
@@ -107,8 +105,6 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
             handleBlur={handleBlur}
-            currentField={currentField}
-            setCurrentField={setCurrentField}
             nextField={next?.field}
             validationSchema={validationSchema}
           />
@@ -130,7 +126,7 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
   return (
     <Box >
       {items.map((row, rowIndex) => (
-        <FormGroup key={`form-row-${rowIndex}`} /*style={rowIndex > 0 && { marginTop: 8 }}*/>
+        <FormGroup key={`form-row-${rowIndex}`}>
           {renderFormLine(row, rowIndex)}
         </FormGroup>
       ))}

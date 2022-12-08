@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ChangeEventHandler, memo } from 'react';
 import _get from 'lodash.get';
 import { FormikErrors, FormikHandlers, FormikHelpers, FormikTouched } from 'formik';
-import { FormError, FormGroupItem, FormTitle, FormInput as Input } from './styles';
+import { FormError, FormGroupItem, FormTitle, FormInput as Input } from './components';
 import { InputType, FormProps } from './types';
 import { ObjectOfAny } from '~/types';
 
@@ -14,8 +14,6 @@ type Props<T> = {
   setFieldValue: FormikHelpers<T>['setFieldValue'];
   handleBlur: FormikHandlers['handleBlur'];
   setFieldTouched: FormikHelpers<T>['setFieldTouched'];
-  currentField?: string | undefined;
-  setCurrentField?: (nextField: string) => void;
   nextField?: string;
   validationSchema: FormProps<T>['validationSchema'];
 } /*& InputProps*/;
@@ -24,17 +22,14 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
   const {
     input,
     values,
-    lastInRow = false,
+    lastInRow,
     errors,
     touched,
     setFieldValue,
     handleBlur,
     setFieldTouched,
-    currentField,
-    setCurrentField,
     nextField,
     validationSchema,
-    ...rest
   } = props;
 
   const path = input.field
@@ -44,7 +39,7 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
 
   const required = _get(validationSchema, `${path}.spec.presence`) === 'required';
   const alreadyTouched = !!_get(touched, input.field);
-  const errorMessage = alreadyTouched ? _get(errors, input.field) : null;
+  const errorMessage = (alreadyTouched ? _get(errors, input.field) : null) as string | null;
   const hasError = alreadyTouched && !!errorMessage;
   const currentValue = _get(values, input.field, '');
 
@@ -68,8 +63,8 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
   };
 
   return (
-    <FormGroupItem /*flex={input.flex || 1} style={[{ paddingRight: lastInRow ? 0 : 16 }]}*/>
-      <FormTitle /*hasError={hasError}*/>
+    <FormGroupItem lastInRow={lastInRow}>
+      <FormTitle hasError={hasError}>
         {`${input.label} ${required ? '*' : ''}`}
       </FormTitle>
       <Input
@@ -77,17 +72,11 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
         onBlur={handleBlur(input.field)}
         value={currentValue}
         disabled={input.locked}
-        // endSlot={input.locked ? () => <Icon name="ic_locked" size={26} /> : undefined}
-        autoFocus={currentField === input.field}
-        // onSubmitEditing={() => (nextField ? setCurrentField?.(nextField) : {})}
-        // blurOnSubmit={!nextField}
-        // hasError={hasError}
-        // placeholderTextColor={colors.midgrey}
-        style={{ height: 48 }}
-        {...input}
-        {...rest}
+        hasError={hasError}
       />
-      {/* {!!errorMessage && <FormError>{errorMessage}</FormError>} */}
+      <>
+        {!!errorMessage && <FormError>{errorMessage}</FormError>}
+      </>
     </FormGroupItem>
   );
 };

@@ -6,6 +6,7 @@ import { styled } from '~/theme'
 interface Props {
   text: string | number
   navigate?: string
+  onClick?: () => void
   css?: CSS
 }
 
@@ -25,15 +26,16 @@ const StyledButton = styled('button', {
   }
 })
 
-const Button = ({ text, navigate, css }: Props) => {
+const Button = ({ text, navigate, onClick, css }: Props) => {
   const router = useRouter()
 
-  const onClick = () => {
+  const handleClick = () => {
     if (navigate) router.push(navigate)
+    else onClick?.()
   }
 
   return (
-    <StyledButton onClick={onClick} css={css}>{text}</StyledButton>
+    <StyledButton onClick={handleClick} css={css}>{text}</StyledButton>
   )
 }
 
