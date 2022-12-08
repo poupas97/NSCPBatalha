@@ -22,7 +22,7 @@ const Cart = () => {
           <Text bold type='6'>Total</Text>
         </GridItem>
         <>
-          {createArray().map((_, index) => (
+          {createArray(2).map((_, index) => (
             <>
               <GridItem key={index} >
                 <Image src="/images/product-2.jpeg" />

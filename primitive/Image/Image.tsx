@@ -3,6 +3,7 @@ import { styled } from '~/theme'
 
 const StyledImage = styled('img', {
   width: '100%',
+  display: 'block'
 })
 
 interface Props {

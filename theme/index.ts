@@ -30,6 +30,10 @@ const { styled, } = createStitches({
       paddingTop: value,
       paddingBottom: value,
     }),
+    paddingHorizontal: (value: string) => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
   }
 });
 

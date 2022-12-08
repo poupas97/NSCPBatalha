@@ -1,15 +1,16 @@
-import { FaTimes } from "react-icons/fa";
+import * as Icons from "react-icons/fa";
 
 export interface Props {
-  name: 'delete'
+  name: 'delete' | 'cart'
   size?: number
 }
 
 const MAPPER = {
-  'delete': FaTimes
+  delete: Icons.FaTimes,
+  cart: Icons.FaShoppingCart,
 }
 
-const Icon = ({ name, size }: Props) => {
+const Icon = ({ name, size = 20 }: Props) => {
   const Component = MAPPER[name]
 
   return <Component size={size} />
