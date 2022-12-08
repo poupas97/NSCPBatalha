@@ -29,7 +29,19 @@ const StyledBox = styled('div', {
       end: {
         justifyContent: 'flex-end'
       }
+    },
+    direction: {
+      column: {
+        flexDirection: 'column'
+      },
+      row: {
+        flexDirection: 'row'
+      }
     }
+  },
+
+  defaultVariants: {
+    direction: 'column'
   }
 })
 
@@ -38,6 +50,7 @@ export interface Props {
   flex?: boolean
   vertical?: 'top' | 'center' | 'bottom'
   horizontal?: 'start' | 'center' | 'end'
+  direction?: 'column' | 'row'
   css?: CSS
 }
 

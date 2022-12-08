@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import Box from '~/primitive/Box'
 import Navbar from '~/components/Navbar'
 import '../styles/globals.css'
 
@@ -13,6 +14,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
     <Navbar />
 
-    <Component {...pageProps} />
+    <Box flex css={{ margin: '0 20%', paddingVertical: '$10', }}>
+      <Component {...pageProps} />
+    </Box>
   </>
 }
