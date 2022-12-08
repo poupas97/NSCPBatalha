@@ -4,6 +4,8 @@ const { styled, } = createStitches({
   theme: {
     colors: {
       green: 'green',
+      green100: '#4cbb17',
+
       gray: 'gray',
     },
 
@@ -13,6 +15,10 @@ const { styled, } = createStitches({
       '15': '15px',
       '20': '20px',
     },
+
+    sizes: {
+      '30': '30px',
+    }
   },
   utils: {
     marginHorizontal: (value: string) => ({
