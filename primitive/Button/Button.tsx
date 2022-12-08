@@ -1,9 +1,12 @@
 import { CSS } from '@stitches/react'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { styled } from '~/theme'
 
 interface Props {
   text: string | number
+  navigate?: string
+  onClick?: () => void
   css?: CSS
 }
 
@@ -23,9 +26,16 @@ const StyledButton = styled('button', {
   }
 })
 
-const Button = ({ text, ...rest }: Props) => {
+const Button = ({ text, navigate, onClick, css }: Props) => {
+  const router = useRouter()
+
+  const handleClick = () => {
+    if (navigate) router.push(navigate)
+    else onClick?.()
+  }
+
   return (
-    <StyledButton {...rest} >{text}</StyledButton>
+    <StyledButton onClick={handleClick} css={css}>{text}</StyledButton>
   )
 }
 
