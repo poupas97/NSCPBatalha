@@ -2,7 +2,7 @@ import React from 'react'
 import { styled } from '~/theme'
 
 const StyledImage = styled('img', {
-  width: '100%'
+  width: '100%',
 })
 
 interface Props {

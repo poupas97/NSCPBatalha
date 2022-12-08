@@ -1,0 +1,1 @@
+export const createArray = () => [...Array(2)]

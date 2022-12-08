@@ -12,6 +12,8 @@ interface Props {
   colSpan?: IGridSpan | Partial<Record<GridMediaQueries, IGridSpan>>;
   colStart?: GridStartEnd | Partial<Record<GridMediaQueries, GridStartEnd>>;
   colEnd?: GridStartEnd | Partial<Record<GridMediaQueries, GridStartEnd>>;
+  horizontal?: 'start' | 'center' | 'end'
+  vertical?: 'start' | 'center' | 'end'
 }
 
 const StyledDiv = styled('div', {
@@ -140,6 +142,28 @@ const StyledDiv = styled('div', {
         gridColumnEnd: '13',
       },
     },
+    horizontal: {
+      start: {
+        alignItems: 'start',
+      },
+      center: {
+        alignItems: 'center',
+      },
+      end: {
+        alignItems: 'end',
+      },
+    },
+    vertical: {
+      start: {
+        justifyContent: 'start',
+      },
+      center: {
+        justifyContent: 'center',
+      },
+      end: {
+        justifyContent: 'end',
+      },
+    }
   },
 });
 
