@@ -37,11 +37,35 @@ export const FormError = (props: TextProps) => <Text {...props} type='4' bold co
 
 export const FormInput = styled('input', {
   padding: '$10',
+  border: 'none',
+  borderBottom: '2px solid black',
+  borderRadius: '4px',
 
   '&:focus': {
     color: '$green',
-    border: '2px solid green',
-    borderRadius: '4px',
+    borderBottomColor: 'green',
+    outline: 'none'
+  },
+
+  variants: {
+    hasError: {
+      true: {
+        border: '2px solid red',
+
+      }
+    }
+  }
+})
+
+export const FormSelect = styled('select', {
+  padding: '$10',
+  border: 'none',
+  borderBottom: '2px solid black',
+  borderRadius: '4px',
+
+  '&:focus': {
+    color: '$green',
+    borderBottomColor: 'green',
     outline: 'none'
   },
 

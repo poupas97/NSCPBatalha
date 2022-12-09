@@ -15,7 +15,6 @@ interface Props {
 const Image = ({ src }: Props) => {
   return (
     <StyledImage src={src} alt={src} />
-
   )
 }
 

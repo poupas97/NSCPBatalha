@@ -1,5 +1,8 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { createRef, useEffect, useState } from 'react'
+import * as Yup from 'yup'
+import { FormRefProps } from '~/components/Form'
+import Form from '~/components/Form/Form'
 import Box from '~/primitive/Box'
 import Button from '~/primitive/Button'
 import Grid, { GridItem } from '~/primitive/Grid'
@@ -8,8 +11,11 @@ import Text from '~/primitive/Text'
 import { IProduct } from '~/types/product'
 import { createArray } from '~/utils/array'
 
+const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL',]
+
 const Product = () => {
   const router = useRouter()
+  const ref = createRef<FormRefProps<{}>>()
 
   const { id } = router.query
 
@@ -24,6 +30,12 @@ const Product = () => {
   }, [id])
 
   if (!product) return null
+
+  const addToCart = async () => {
+    const result = await ref.current?.onSubmit()
+
+    console.log(result);
+  }
 
   return (
     <>
@@ -45,8 +57,18 @@ const Product = () => {
         </GridItem>
         <GridItem colSpan={2}>
           <Text>{product.description}</Text>
+          <Form 
+            ref={ref}
+            validationSchema={getValidationSchema()}
+            items={[{ 
+              type: 'dropdown', 
+              field: 'size', 
+              label: 'Sizes',
+              options: SIZES.map((it) => ({ label: it, value: it })),   
+            }]}
+          />
           <Text bold>{`€ ${product.price}`}</Text>
-          <Button text='+ Add to cart' />
+          <Button text='+ Add to cart' onClick={addToCart}/>
         </GridItem>
       </Grid>
     </>
@@ -54,3 +76,9 @@ const Product = () => {
 }
 
 export default Product
+
+function getValidationSchema() {
+  return Yup.object().shape({
+    size: Yup.string().required('Required'),
+  });
+}
