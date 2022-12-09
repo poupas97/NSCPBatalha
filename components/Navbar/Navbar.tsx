@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Row from '~/primitive/Row'
 import Box from '~/primitive/Box'
-import { CartRoute, RootRoute, ShopRoute } from '~/routes'
+import { CartRoute, ProductsRoute, RootRoute, } from '~/routes'
 import NavbarItem from './NavbarItem'
 import Text from '~/primitive/Text'
 import Icon from '~/primitive/Icon'
@@ -20,7 +20,7 @@ const Navbar = () => {
         <Box>Logo</Box>
         <Row horizontal='center' css={{ flex: 1, }}>
           <NavbarItem label='Home' selected={asPath === RootRoute} onClick={() => push(RootRoute)} />
-          <NavbarItem label='Shop' selected={asPath === ShopRoute} onClick={() => push(ShopRoute)} />
+          <NavbarItem label='Products' selected={asPath === ProductsRoute} onClick={() => push(ProductsRoute)} />
           <NavbarItem label='Cart' selected={asPath === CartRoute} onClick={() => push(CartRoute)} />
           <NavbarItem label='Blog' selected={false} onClick={() => { }} />
           <NavbarItem label='Contacts' selected={false} onClick={() => { }} />

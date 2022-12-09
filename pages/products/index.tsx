@@ -4,7 +4,7 @@ import ProductGrid from '~/components/ProductGrid'
 import Text from '~/primitive/Text'
 import { IProduct } from '~/types/product'
 
-const Shop = () => {
+const Products = () => {
   const [products, setProducts] = useState<IProduct[]>()
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const Shop = () => {
   )
 }
 
-export default Shop
+export default Products
