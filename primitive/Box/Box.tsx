@@ -2,6 +2,14 @@ import { CSS } from '@stitches/react'
 import { styled } from '~/theme'
 
 const StyledBox = styled('div', {
+
+  '&[data-type="click"]': {
+    '&:hover': {
+      cursor: 'pointer',
+      boxShadow: 'green 5px 5px 5px',
+    }
+  },
+
   variants: {
     flex: {
       true: {
@@ -51,12 +59,13 @@ export interface Props {
   vertical?: 'top' | 'center' | 'bottom'
   horizontal?: 'start' | 'center' | 'end'
   direction?: 'column' | 'row'
+  onClick?: () => void
   css?: CSS
 }
 
 
 const Box = (props: Props) => {
-  return <StyledBox {...props} />
+  return <StyledBox data-type={props.onClick ? 'click' : undefined}{...props} />
 }
 
 export default Box

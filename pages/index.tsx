@@ -1,65 +1,53 @@
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { useEffect, useState } from 'react'
+import ProductGrid from '~/components/ProductGrid'
+import Box from '~/primitive/Box'
+import Image from '~/primitive/Image'
+import Row from '~/primitive/Row'
+import Text from '~/primitive/Text'
+import { IProduct } from '~/types/product'
 
-export default function Home() {
+const Home = () => {
+  const [carrousel, setCarrousel] = useState(0)
+  const [products, setProducts] = useState<IProduct[]>()
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCarrousel(current => {
+        const next = current + 1
+
+        return next === 2 ? 0 : next
+      })
+    }, 2000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(json => setProducts(json))
+  }, [])
+
+
   return (
-    <div className={styles.container}>
+    <>
+      <Box flex css={{ backgroundColor: 'green', paddingVertical: '$20' }}>
+        <Box css={{ width: '30%' }}>
+          <Image src={`images/product-${carrousel + 1}.jpeg`} />
+        </Box>
+      </Box>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <Row horizontal='center' css={{ marginVertical: '$20' }}>
+        <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: true ? 'black' : 'gray' }}>Best Sellers</Text>
+        <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: false ? 'black' : 'gray' }}>New Arrivals</Text>
+        <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: false ? 'black' : 'gray' }}>Hot Sales</Text>
+      </Row>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+      <ProductGrid products={products} />
+    </>
   )
 }
+
+export default Home

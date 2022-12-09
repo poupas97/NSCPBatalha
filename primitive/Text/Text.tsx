@@ -4,14 +4,22 @@ import { styled } from '~/theme'
 
 export interface Props {
   children: string
-  type?: '4' | '5' | '6'
+  type?: '4' | '5' | '6' | '7'
   bold?: boolean
   color?: 'red'
+  onClick?: () => void
   css?: CSS
 }
 
 const StyledSpan = styled('span', {
   paddingVertical: '$5',
+
+  '&[data-type="click"]': {
+    '&:hover': {
+      color: 'gray',
+      cursor: 'pointer',
+    }
+  },
 
   variants: {
     type: {
@@ -23,6 +31,9 @@ const StyledSpan = styled('span', {
       },
       '6': {
         fontSize: '18px'
+      },
+      '7': {
+        fontSize: '21px'
       },
     },
     bold: {
@@ -42,9 +53,9 @@ const StyledSpan = styled('span', {
   }
 })
 
-const Text = (props: Props) => {
+const Text = ({ onClick, ...rest }: Props) => {
   return (
-    <StyledSpan {...props} />
+    <StyledSpan data-type={onClick ? 'click' : undefined} {...rest} />
   )
 }
 

@@ -2,20 +2,23 @@ import { CSS } from '@stitches/react'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { styled } from '~/theme'
+import Icon, { IconProps } from "~/primitive/Icon";
 
 interface Props {
   text: string | number
   navigate?: string
   onClick?: () => void
+  icon?: IconProps['name']
   css?: CSS
 }
 
 const StyledButton = styled('button', {
-  backgroundColor: 'transparent',
+  backgroundColor: 'black',
   border: '1px solid black',
-  padding: '$5',
+  padding: '$10',
   borderRadius: '3px',
-  color: 'black',
+  color: 'white',
+  width: '100%',
 
   '&:hover': {
     cursor: 'pointer'
@@ -23,10 +26,10 @@ const StyledButton = styled('button', {
 
   '&:active': {
     backgroundColor: '$green100'
-  }
+  },
 })
 
-const Button = ({ text, navigate, onClick, css }: Props) => {
+const Button = ({ text, navigate, onClick, icon, css }: Props) => {
   const router = useRouter()
 
   const handleClick = () => {
@@ -35,7 +38,13 @@ const Button = ({ text, navigate, onClick, css }: Props) => {
   }
 
   return (
-    <StyledButton onClick={handleClick} css={css}>{text}</StyledButton>
+    <StyledButton
+      onClick={handleClick}
+      css={css}
+    >
+      {icon && <Icon name={icon} />}
+      {text}
+    </StyledButton>
   )
 }
 

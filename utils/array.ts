@@ -1,1 +1,1 @@
-export const createArray = () => [...Array(2)]
+export const createArray = (value: number) => [...Array(value)]

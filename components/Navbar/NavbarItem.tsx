@@ -21,7 +21,6 @@ const StyledSpan = styled('span', {
 
   '&[data-selected=true]': {
     borderBottomColor: '$green',
-    color: '$green'
   },
 })
 

@@ -14,6 +14,7 @@ const { styled, } = createStitches({
       '10': '10px',
       '15': '15px',
       '20': '20px',
+      '50': '50px',
     },
 
     sizes: {
@@ -25,10 +26,18 @@ const { styled, } = createStitches({
       marginLeft: value,
       marginRight: value,
     }),
+    marginVertical: (value: string) => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
 
     paddingVertical: (value: string) => ({
       paddingTop: value,
       paddingBottom: value,
+    }),
+    paddingHorizontal: (value: string) => ({
+      paddingLeft: value,
+      paddingRight: value,
     }),
   }
 });
