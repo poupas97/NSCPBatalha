@@ -27,6 +27,7 @@ const Navbar = () => {
         </Row>
         <Row vertical='center'>
           <Icon name='cart' />
+          <Text>(1) € 0.2</Text>
         </Row>
       </Row>
     </Box>

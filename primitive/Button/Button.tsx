@@ -18,6 +18,7 @@ const StyledButton = styled('button', {
   padding: '$10',
   borderRadius: '3px',
   color: 'white',
+  width: '100%',
 
   '&:hover': {
     cursor: 'pointer'
@@ -25,7 +26,7 @@ const StyledButton = styled('button', {
 
   '&:active': {
     backgroundColor: '$green100'
-  }
+  },
 })
 
 const Button = ({ text, navigate, onClick, icon, css }: Props) => {

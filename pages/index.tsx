@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
+import ProductGrid from '~/components/ProductGrid'
 import Box from '~/primitive/Box'
-import Button from '~/primitive/Button'
-import Grid, { GridItem } from '~/primitive/Grid'
 import Image from '~/primitive/Image'
+import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
-import { createArray } from '~/utils/array'
+import { IProduct } from '~/types/product'
 
 const Home = () => {
-  const [index, setIndex] = useState(0)
+  const [carrousel, setCarrousel] = useState(0)
+  const [products, setProducts] = useState<IProduct[]>()
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex(current => {
+      setCarrousel(current => {
         const next = current + 1
 
         return next === 2 ? 0 : next
@@ -23,26 +24,28 @@ const Home = () => {
     }
   }, [])
 
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(json => setProducts(json))
+  }, [])
+
+
   return (
     <>
       <Box flex css={{ backgroundColor: 'green', paddingVertical: '$20' }}>
         <Box css={{ width: '30%' }}>
-          <Image src={`images/product-${index + 1}.jpeg`} />
+          <Image src={`images/product-${carrousel + 1}.jpeg`} />
         </Box>
       </Box>
-      <Text type='7' bold>Arrivals</Text>
-      <Grid columns={3} gapX={20} gapY={20}>
-        {createArray(6).map((_, index) => (
-          <GridItem key={index} >
-            <Box flex>
-              <Image src={`images/product-${index % 2 === 0 ? 1 : 2}.jpeg`} />
-              <Text>{`Product ${index + 1}`}</Text>
-              <Text bold>{`€ ${3.1 * index}`}</Text>
-              <Button text='+ Add to cart' />
-            </Box>
-          </GridItem>
-        ))}
-      </Grid>
+
+      <Row horizontal='center' css={{ marginVertical: '$20' }}>
+        <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: true ? 'black' : 'gray' }}>Best Sellers</Text>
+        <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: false ? 'black' : 'gray' }}>New Arrivals</Text>
+        <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: false ? 'black' : 'gray' }}>Hot Sales</Text>
+      </Row>
+
+      <ProductGrid products={products} />
     </>
   )
 }
