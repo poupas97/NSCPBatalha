@@ -2,11 +2,11 @@ import React, { ChangeEvent, ChangeEventHandler, memo } from 'react';
 import _get from 'lodash.get';
 import { FormikErrors, FormikHandlers, FormikHelpers, FormikTouched } from 'formik';
 import { FormError, FormGroupItem, FormTitle, FormInput as Input } from './components';
-import { InputType, FormProps } from './types';
+import { NumberType, FormProps } from './types';
 import { ObjectOfAny } from '~/types';
 
 type Props<T> = {
-  input: InputType;
+  input: NumberType;
   values: T;
   lastInRow?: boolean;
   errors: FormikErrors<T>;
@@ -18,7 +18,7 @@ type Props<T> = {
   validationSchema: FormProps<T>['validationSchema'];
 } /*& InputProps*/;
 
-const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
+const FormNumber = <T extends ObjectOfAny>(props: Props<T>) => {
   const {
     input,
     values,
@@ -41,22 +41,11 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
   const alreadyTouched = !!_get(touched, input.field);
   const errorMessage = (alreadyTouched ? _get(errors, input.field) : null) as string | null;
   const hasError = alreadyTouched && !!errorMessage;
-  const currentValue = _get(values, input.field, '');
+  const currentValue = _get(values, input.field, input.min);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     let nextValue = value
-
-
-    if (input.template) {
-      const nextChar = input.template[value.length];
-
-      if (value.length > input.template.length) return;
-
-      if (nextChar && nextChar !== '#' && String(currentValue).length <= value.length) {
-        nextValue = `${nextValue}${nextChar}`;
-      }
-    }
 
     setFieldTouched(input.field, true);
     setFieldValue(input.field, nextValue);
@@ -73,10 +62,11 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
         value={currentValue}
         disabled={input.locked}
         hasError={hasError}
+        type="number"
       />
       {errorMessage ? <FormError>{errorMessage}</FormError> : <></>}
     </FormGroupItem>
   );
 };
 
-export default memo(FormInput);
+export default memo(FormNumber);

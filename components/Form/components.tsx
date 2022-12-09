@@ -3,7 +3,7 @@ import Row, { RowProps } from "~/primitive/Row";
 import Text, { TextProps } from "~/primitive/Text";
 import { styled } from "~/theme";
 
-export const FormGroup = (props: RowProps) => <Row {...props} css={{ marginTop: '$20' }} />
+export const FormGroup = (props: RowProps) => <Row {...props} css={{ marginVertical: '$20' }} />
 
 export const FormGroupItem = styled(Box, {
   display: 'flex',
@@ -17,8 +17,6 @@ export const FormGroupItem = styled(Box, {
     },
   }
 })
-
-export const Title = Text
 
 export const FormTitle = styled(Text, {
   display: 'flex',
@@ -47,11 +45,14 @@ export const FormInput = styled('input', {
     outline: 'none'
   },
 
+  '&[type=number]::-webkit-inner-spin-button': {
+     opacity: 1,
+  },
+
   variants: {
     hasError: {
       true: {
-        border: '2px solid red',
-
+        borderBottom: '2px solid red',
       }
     }
   }

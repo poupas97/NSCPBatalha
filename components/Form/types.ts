@@ -19,8 +19,15 @@ export type DropdownType = {
   options: DropdownOption[]
 };
 
+export type NumberType = {
+  field: string;
+  label: string;
+  locked?: boolean;
+  type?: 'number';
+  min?: number
+};
 
-export type Item = (InputType | DropdownType);
+export type Item = (InputType | DropdownType | NumberType);
 
 export type FormItem = Item | Item[] | ReactElement;
 

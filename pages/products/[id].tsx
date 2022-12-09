@@ -65,6 +65,12 @@ const Product = () => {
               field: 'size', 
               label: 'Sizes',
               options: SIZES.map((it) => ({ label: it, value: it })),   
+            },
+            { 
+              type: 'number', 
+              field: 'quantity', 
+              label: 'Quantity',
+              min:1,
             }]}
           />
           <Text bold>{`€ ${product.price}`}</Text>
@@ -80,5 +86,6 @@ export default Product
 function getValidationSchema() {
   return Yup.object().shape({
     size: Yup.string().required('Required'),
+    quantity: Yup.number().min(1, 'Minimum is 1').required('Required'),
   });
 }

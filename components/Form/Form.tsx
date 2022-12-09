@@ -7,12 +7,13 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import { useFormik, } from 'formik';
-import { DropdownType, FormItem, FormProps, FormRefProps, InputType, Item } from './types';
+import { FormItem, FormProps, FormRefProps, Item } from './types';
 import FormInput from './FormInput';
 import Box from '~/primitive/Box';
 import { ObjectOfAny } from '~/types';
 import { FormGroup } from './components';
 import FormDropdown from './FormDropdown';
+import FormNumber from './FormNumber';
 
 const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: ForwardedRef<FormRefProps<T>>) => {
   const { initialValue, items, validationSchema, onValidate, } = props;
@@ -126,6 +127,23 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
             validationSchema={validationSchema}
           />
         );
+
+      case 'number':
+        return (
+          <FormNumber
+            key={`form-number-${current.field}`}
+            input={current}
+            values={values}
+            lastInRow={lastInRow}
+            errors={errors}
+            touched={touched}
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+            handleBlur={handleBlur}
+            nextField={next?.field}
+            validationSchema={validationSchema}
+          />
+        );
     }
   };
 
@@ -141,7 +159,7 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
   };
 
   return (
-    <Box >
+    <Box>
       {items.map((row, rowIndex) => (
         <FormGroup key={`form-row-${rowIndex}`}>
           <>{renderFormLine(row, rowIndex)}</>
