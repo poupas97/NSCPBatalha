@@ -3,7 +3,7 @@ import Row, { RowProps } from "~/primitive/Row";
 import Text, { TextProps } from "~/primitive/Text";
 import { styled } from "~/theme";
 
-export const FormGroup = (props: RowProps) => <Row {...props} css={{ marginTop: '$20' }} />
+export const FormGroup = (props: RowProps) => <Row {...props} css={{ marginVertical: '$20' }} />
 
 export const FormGroupItem = styled(Box, {
   display: 'flex',
@@ -17,8 +17,6 @@ export const FormGroupItem = styled(Box, {
     },
   }
 })
-
-export const Title = Text
 
 export const FormTitle = styled(Text, {
   display: 'flex',
@@ -37,11 +35,38 @@ export const FormError = (props: TextProps) => <Text {...props} type='4' bold co
 
 export const FormInput = styled('input', {
   padding: '$10',
+  border: 'none',
+  borderBottom: '2px solid black',
+  borderRadius: '4px',
 
   '&:focus': {
     color: '$green',
-    border: '2px solid green',
-    borderRadius: '4px',
+    borderBottomColor: 'green',
+    outline: 'none'
+  },
+
+  '&[type=number]::-webkit-inner-spin-button': {
+     opacity: 1,
+  },
+
+  variants: {
+    hasError: {
+      true: {
+        borderBottom: '2px solid red',
+      }
+    }
+  }
+})
+
+export const FormSelect = styled('select', {
+  padding: '$10',
+  border: 'none',
+  borderBottom: '2px solid black',
+  borderRadius: '4px',
+
+  '&:focus': {
+    color: '$green',
+    borderBottomColor: 'green',
     outline: 'none'
   },
 

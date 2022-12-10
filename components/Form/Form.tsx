@@ -7,11 +7,13 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import { useFormik, } from 'formik';
-import { FormItem, FormProps, FormRefProps, InputType, Item } from './types';
+import { FormItem, FormProps, FormRefProps, Item } from './types';
 import FormInput from './FormInput';
 import Box from '~/primitive/Box';
 import { ObjectOfAny } from '~/types';
 import { FormGroup } from './components';
+import FormDropdown from './FormDropdown';
+import FormNumber from './FormNumber';
 
 const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: ForwardedRef<FormRefProps<T>>) => {
   const { initialValue, items, validationSchema, onValidate, } = props;
@@ -56,14 +58,15 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
         resetForm();
       },
     }),
-    [validateForm, values]
+    
+    [validateForm, values]// eslint-disable-line react-hooks/exhaustive-deps
   );
 
   useEffect(() => {
     onValidate?.(isValid);
-  }, [isValid]);
+  }, [isValid]);// eslint-disable-line react-hooks/exhaustive-deps
 
-  const findNextField = (rowIndex: number, fieldIndex: number): undefined | InputType => {
+  const findNextField = (rowIndex: number, fieldIndex: number): Item => {
     const row = items[rowIndex];
     const lastInRow = fieldIndex === (Array.isArray(row) ? row.length - 1 : 0);
     let next;
@@ -91,12 +94,44 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
     const next = findNextField(rowIndex, fieldIndex);
 
     switch (current.type) {
+      case 'dropdown':
+        return (
+          <FormDropdown
+            key={`form-dropdown-${current.field}`}
+            dropdown={current}
+            values={values}
+            lastInRow={lastInRow}
+            errors={errors}
+            touched={touched}
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+            handleBlur={handleBlur}
+            nextField={next?.field}
+            validationSchema={validationSchema}
+          />
+        );
 
-
-      default:
+      case 'input':
         return (
           <FormInput
             key={`form-input-${current.field}`}
+            input={current}
+            values={values}
+            lastInRow={lastInRow}
+            errors={errors}
+            touched={touched}
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+            handleBlur={handleBlur}
+            nextField={next?.field}
+            validationSchema={validationSchema}
+          />
+        );
+
+      case 'number':
+        return (
+          <FormNumber
+            key={`form-number-${current.field}`}
             input={current}
             values={values}
             lastInRow={lastInRow}
@@ -124,14 +159,16 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
   };
 
   return (
-    <Box >
+    <Box>
       {items.map((row, rowIndex) => (
         <FormGroup key={`form-row-${rowIndex}`}>
-          {renderFormLine(row, rowIndex)}
+          <>{renderFormLine(row, rowIndex)}</>
         </FormGroup>
       ))}
     </Box>
   );
 });
+
+Form.displayName="Form"
 
 export default Form;

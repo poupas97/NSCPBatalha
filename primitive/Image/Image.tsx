@@ -5,6 +5,7 @@ const StyledImage = styled('img', {
   display: 'block',
   width: '100%',
   maxHeight: '350px',
+  maxWidth: '350px',
 })
 
 interface Props {
@@ -14,7 +15,6 @@ interface Props {
 const Image = ({ src }: Props) => {
   return (
     <StyledImage src={src} alt={src} />
-
   )
 }
 

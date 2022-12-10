@@ -53,9 +53,9 @@ const StyledSpan = styled('span', {
   }
 })
 
-const Text = ({ onClick, ...rest }: Props) => {
+const Text = (props: Props) => {
   return (
-    <StyledSpan data-type={onClick ? 'click' : undefined} {...rest} />
+    <StyledSpan data-type={props.onClick ? 'click' : undefined}  {...props} />
   )
 }
 

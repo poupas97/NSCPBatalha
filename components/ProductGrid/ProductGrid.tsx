@@ -5,7 +5,7 @@ import Button from '~/primitive/Button'
 import Grid, { GridItem } from '~/primitive/Grid'
 import Image from '~/primitive/Image'
 import Text from '~/primitive/Text'
-import { ShopItemRoute } from '~/routes'
+import { ProductRoute } from '~/routes'
 import { IProduct } from '~/types/product'
 
 const ProductGrid = ({ products }: { products: IProduct[] | undefined }) => {
@@ -14,7 +14,7 @@ const ProductGrid = ({ products }: { products: IProduct[] | undefined }) => {
   if (!products) return null
 
   const onClick = (id: IProduct['id']) => () => {
-    router.push(ShopItemRoute(id))
+    router.push(ProductRoute(id))
   }
 
   return (
