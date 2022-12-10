@@ -10,13 +10,13 @@ interface Props {
   onClick?: () => void
   icon?: IconProps['name']
   css?: CSS
+  className?: string
 }
 
 const StyledButton = styled('button', {
   backgroundColor: 'black',
   border: '1px solid black',
   padding: '$10',
-  borderRadius: '3px',
   color: 'white',
   width: '100%',
 
@@ -29,7 +29,7 @@ const StyledButton = styled('button', {
   },
 })
 
-const Button = ({ text, navigate, onClick, icon, css }: Props) => {
+const Button = ({ text, navigate, onClick, icon, css, className }: Props) => {
   const router = useRouter()
 
   const handleClick = () => {
@@ -41,6 +41,7 @@ const Button = ({ text, navigate, onClick, icon, css }: Props) => {
     <StyledButton
       onClick={handleClick}
       css={css}
+      className={className}
     >
       {icon && <Icon name={icon} />}
       {text}

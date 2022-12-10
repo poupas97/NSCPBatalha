@@ -37,7 +37,6 @@ export const FormInput = styled('input', {
   padding: '$10',
   border: 'none',
   borderBottom: '2px solid black',
-  borderRadius: '4px',
 
   '&:focus': {
     color: '$green',
@@ -46,7 +45,7 @@ export const FormInput = styled('input', {
   },
 
   '&[type=number]::-webkit-inner-spin-button': {
-     opacity: 1,
+    opacity: 1,
   },
 
   variants: {
@@ -62,7 +61,6 @@ export const FormSelect = styled('select', {
   padding: '$10',
   border: 'none',
   borderBottom: '2px solid black',
-  borderRadius: '4px',
 
   '&:focus': {
     color: '$green',

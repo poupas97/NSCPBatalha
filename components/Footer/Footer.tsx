@@ -5,7 +5,7 @@ import Grid, { GridItem } from '~/primitive/Grid'
 
 const Footer = () => {
   return (
-    <Box vertical='center' css={{ padding: '0 20%', paddingVertical: '$10', backgroundColor: 'green' }}>
+    <Box vertical='center' css={{ padding: '0 20%', paddingVertical: '$10', backgroundColor: 'green', }}>
       <Grid columns={4} gapX={20}>
         <GridItem>
           Logo
@@ -23,9 +23,9 @@ const Footer = () => {
           <Text>erwtuiwe rgf gbfhgjk sfgd gçajncmnmn zzuhaiefawfauif euiierqtuiqiopu </Text>
         </GridItem>
       </Grid>
-      <Box flex vertical='center' css={{ marginTop: '$10', paddingTop: '$10', borderTop: '1px solid rgba(255, 255, 255, 0.2)' }}>
+      <Box flex vertical='center' css={{ paddingTop: '$10', borderTop: '1px solid rgba(255, 255, 255, 0.2)' }}>
         <Text>
-          Copyright © 20222020 All rights reserved | This template is made with  by Colorlib
+          Copyright © 20222020 All rights reserved | This template is made with by
         </Text>
       </Box>
     </Box>
