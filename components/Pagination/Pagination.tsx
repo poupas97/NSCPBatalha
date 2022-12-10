@@ -1,20 +1,32 @@
 import React from 'react'
 import Button from '~/primitive/Button'
 import Row from '~/primitive/Row'
+import { styled } from '~/theme'
+import { createArray } from '~/utils/array'
+
+const PageButton = styled(Button, {
+  borderRadius: '50%',
+  width: '$30',
+  height: '$30',
+  padding: '$5',
+
+  variants: {
+    isLast: {
+      false: {
+        marginRight: '$5'
+      }
+    }
+  }
+})
 
 const Pagination = () => {
   return (
     <Row horizontal='center' css={{ marginTop: '$20' }}>
-      {[...Array(3)].map((_, index) => (
-        <Button
+      {createArray(3).map((_, index) => (
+        <PageButton
           key={index}
           text={index + 1}
-          css={{
-            borderRadius: '50%',
-            width: '$30',
-            height: '$30',
-            marginRight: index < 2 ? '5px' : undefined
-          }}
+          isLast={index === 2}
         />
       ))}
     </Row>

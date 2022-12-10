@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Pagination from '~/components/Pagination/Pagination'
+import Pagination from '~/components/Pagination'
 import ProductGrid from '~/components/ProductGrid'
 import Text from '~/primitive/Text'
 import { IProduct } from '~/types/product'

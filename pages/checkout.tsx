@@ -32,6 +32,7 @@ const Checkout = () => {
           ],
           { type: 'input', field: 'test 3', label: 'Order notes' },
         ]}
+        validationSchema={{}}
       />
       <Box flex vertical='bottom' css={{ marginTop: '$20' }}>
         <Button text='Submit' onClick={onSubmit} />

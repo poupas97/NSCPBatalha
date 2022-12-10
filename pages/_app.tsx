@@ -16,10 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Navbar />
 
-      <Box flex css={{ margin: '0 20%', paddingVertical: '$10', }}>
+      <Box flex css={{ margin: '0 20%', paddingVertical: '$50', }}>
         <Component {...pageProps} />
       </Box>
 
       <Footer />
-    </>)
+    </>
+  )
 }

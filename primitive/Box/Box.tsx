@@ -2,11 +2,9 @@ import { CSS } from '@stitches/react'
 import { styled } from '~/theme'
 
 const StyledBox = styled('div', {
-
   '&[data-type="click"]': {
     '&:hover': {
       cursor: 'pointer',
-      boxShadow: 'green 5px 5px 5px',
     }
   },
 

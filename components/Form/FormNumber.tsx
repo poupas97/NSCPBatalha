@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, memo } from 'react';
+import React, { ChangeEvent, memo } from 'react';
 import _get from 'lodash.get';
 import { FormikErrors, FormikHandlers, FormikHelpers, FormikTouched } from 'formik';
 import { FormError, FormGroupItem, FormTitle, FormInput as Input } from './components';

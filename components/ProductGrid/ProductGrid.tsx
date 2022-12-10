@@ -6,7 +6,14 @@ import Grid, { GridItem } from '~/primitive/Grid'
 import Image from '~/primitive/Image'
 import Text from '~/primitive/Text'
 import { ProductRoute } from '~/routes'
+import { styled } from '~/theme'
 import { IProduct } from '~/types/product'
+
+const Container = styled(Box, {
+  '&:hover': {
+    boxShadow: 'green 5px 5px 5px',
+  },
+})
 
 const ProductGrid = ({ products }: { products: IProduct[] | undefined }) => {
   const router = useRouter()
@@ -21,14 +28,14 @@ const ProductGrid = ({ products }: { products: IProduct[] | undefined }) => {
     <Grid columns={4} gapX={20} gapY={20}>
       {products.map((item, index) => (
         <GridItem key={index} >
-          <Box flex css={{ flex: 1, }} onClick={onClick(item.id)}>
+          <Container flex css={{ flex: 1, }} onClick={onClick(item.id)}>
             <Box flex horizontal='center' css={{ flex: 1, }}>
               <Image src={item.image} />
             </Box>
             <Text>{item.title}</Text>
             <Text bold>{`€ ${item.price}`}</Text>
             <Button text='+ Add to cart' />
-          </Box>
+          </Container>
         </GridItem>
       ))}
     </Grid>
