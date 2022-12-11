@@ -6,7 +6,7 @@ import Grid, { GridItem } from '~/primitive/Grid'
 const Footer = () => {
   return (
     <Box vertical='center' css={{ padding: '0 20%', paddingVertical: '$10', backgroundColor: 'green', }}>
-      <Grid columns={4} gapX={20}>
+      <Grid columns='4' gapX='20'>
         <GridItem>
           Logo
         </GridItem>

@@ -19,14 +19,20 @@ const PageButton = styled(Button, {
   }
 })
 
-const Pagination = () => {
+interface Props {
+  pages: number
+  onClick: (page: number) => () => void
+}
+
+const Pagination = ({ pages, onClick }: Props) => {
   return (
     <Row horizontal='center' css={{ marginTop: '$20' }}>
-      {createArray(3).map((_, index) => (
+      {createArray(pages).map((_, index) => (
         <PageButton
           key={index}
           text={index + 1}
           isLast={index === 2}
+          onClick={onClick(index)}
         />
       ))}
     </Row>

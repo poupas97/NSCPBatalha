@@ -40,9 +40,9 @@ const Product = () => {
   return (
     <>
       <Text bold type='7' css={{ marginVertical: '$50' }}>{product.title}</Text>
-      <Grid columns={7} gapX={20}>
+      <Grid columns='7' gapX='20'>
         <GridItem>
-          <Grid columns={2} gapX={20} gapY={20}>
+          <Grid columns='2' gapX='20' gapY='20'>
             {createArray(4).map((_, index) => (
               <GridItem key={index} >
                 <Image src={product.image} />
@@ -57,24 +57,24 @@ const Product = () => {
         </GridItem>
         <GridItem colSpan={2}>
           <Text>{product.description}</Text>
-          <Form 
+          <Form
             ref={ref}
             validationSchema={getValidationSchema()}
-            items={[{ 
-              type: 'dropdown', 
-              field: 'size', 
+            items={[{
+              type: 'dropdown',
+              field: 'size',
               label: 'Sizes',
-              options: SIZES.map((it) => ({ label: it, value: it })),   
+              options: SIZES.map((it) => ({ label: it, value: it })),
             },
-            { 
-              type: 'number', 
-              field: 'quantity', 
+            {
+              type: 'number',
+              field: 'quantity',
               label: 'Quantity',
-              min:1,
+              min: 1,
             }]}
           />
           <Text bold>{`€ ${product.price}`}</Text>
-          <Button text='+ Add to cart' onClick={addToCart}/>
+          <Button text='+ Add to cart' onClick={addToCart} />
         </GridItem>
       </Grid>
     </>

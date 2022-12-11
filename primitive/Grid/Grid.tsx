@@ -1,10 +1,10 @@
 import { styled } from '~/theme';
 
-export type IGridColumns = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type IGridColumns = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
 
 type GridMediaQueries = '@initial' | '@xs' | '@sm' | '@md' | '@lg' | '@xl';
 
-type GridGaps = 0 | 20;
+type GridGaps = '0' | '20' | '50';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -20,20 +20,25 @@ const StyledDiv = styled('div', {
 
   variants: {
     gapX: {
-      0: {
+      '0': {
         columnGap: 0,
       },
-      20: {
+      '20': {
         columnGap: '$20',
       },
-
+      '50': {
+        columnGap: '$50',
+      },
     },
     gapY: {
-      0: {
+      '0': {
         rowGap: '0',
       },
-      20: {
+      '20': {
         rowGap: '$20',
+      },
+      '50': {
+        rowGap: '$50',
       },
     },
     columns: {

@@ -58,7 +58,6 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
         resetForm();
       },
     }),
-    
     [validateForm, values]// eslint-disable-line react-hooks/exhaustive-deps
   );
 
@@ -66,33 +65,8 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
     onValidate?.(isValid);
   }, [isValid]);// eslint-disable-line react-hooks/exhaustive-deps
 
-  const findNextField = (rowIndex: number, fieldIndex: number): Item => {
-    const row = items[rowIndex];
-    const lastInRow = fieldIndex === (Array.isArray(row) ? row.length - 1 : 0);
-    let next;
 
-    if (lastInRow) {
-      next = items[rowIndex + 1];
-    } else {
-      next = Array.isArray(row) ? row[fieldIndex + 1] : row;
-    }
-
-    if (next && Array.isArray(next)) {
-      [next] = next;
-    }
-
-    if (next?.type !== undefined || next?.type === 'input' || next?.locked) {
-      if (lastInRow) return findNextField(rowIndex + 1, 0);
-
-      return findNextField(rowIndex, fieldIndex + 1);
-    }
-
-    return next;
-  };
-
-  const renderField = (current: Item, rowIndex: number, fieldIndex: number, lastInRow: boolean) => {
-    const next = findNextField(rowIndex, fieldIndex);
-
+  const renderField = (current: Item, lastInRow: boolean) => {
     switch (current.type) {
       case 'dropdown':
         return (
@@ -106,7 +80,6 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
             handleBlur={handleBlur}
-            nextField={next?.field}
             validationSchema={validationSchema}
           />
         );
@@ -123,7 +96,6 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
             handleBlur={handleBlur}
-            nextField={next?.field}
             validationSchema={validationSchema}
           />
         );
@@ -140,7 +112,6 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
             handleBlur={handleBlur}
-            nextField={next?.field}
             validationSchema={validationSchema}
           />
         );
@@ -150,12 +121,12 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
   const renderFormLine = (itemOrRow: Item | Item[] | ReactElement, rowIndex: number) => {
     if (Array.isArray(itemOrRow))
       return itemOrRow.map((field, fieldIndex) =>
-        renderField(field, rowIndex, fieldIndex, fieldIndex === itemOrRow.length - 1)
+        renderField(field, fieldIndex === itemOrRow.length - 1)
       );
 
     if (isValidElement(itemOrRow)) return itemOrRow;
 
-    return renderField(itemOrRow, rowIndex, 0, true);
+    return renderField(itemOrRow, true);
   };
 
   return (
@@ -169,6 +140,6 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
   );
 });
 
-Form.displayName="Form"
+Form.displayName = "Form"
 
 export default Form;

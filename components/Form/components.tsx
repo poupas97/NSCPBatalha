@@ -1,4 +1,5 @@
 import Box from "~/primitive/Box";
+import Input from "~/primitive/Input";
 import Row, { RowProps } from "~/primitive/Row";
 import Text, { TextProps } from "~/primitive/Text";
 import { styled } from "~/theme";
@@ -33,25 +34,11 @@ export const FormTitle = styled(Text, {
 
 export const FormError = (props: TextProps) => <Text {...props} type='4' bold color='red' />
 
-export const FormInput = styled('input', {
-  padding: '$10',
-  border: 'none',
-  borderBottom: '2px solid black',
-
-  '&:focus': {
-    color: '$green',
-    borderBottomColor: 'green',
-    outline: 'none'
-  },
-
-  '&[type=number]::-webkit-inner-spin-button': {
-    opacity: 1,
-  },
-
+export const FormInput = styled(Input, {
   variants: {
     hasError: {
       true: {
-        borderBottom: '2px solid red',
+        borderBottom: '1px solid red',
       }
     }
   }
@@ -60,7 +47,7 @@ export const FormInput = styled('input', {
 export const FormSelect = styled('select', {
   padding: '$10',
   border: 'none',
-  borderBottom: '2px solid black',
+  borderBottom: '1px solid black',
 
   '&:focus': {
     color: '$green',

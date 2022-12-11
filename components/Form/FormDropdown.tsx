@@ -16,7 +16,6 @@ type Props<T> = {
   setFieldValue: FormikHelpers<T>['setFieldValue'];
   handleBlur: FormikHandlers['handleBlur'];
   setFieldTouched: FormikHelpers<T>['setFieldTouched'];
-  nextField?: string;
   validationSchema: FormProps<T>['validationSchema'];
 };
 
@@ -30,7 +29,6 @@ const FormDropdown = <T extends ObjectOfAny>(props: Props<T>) => {
     setFieldValue,
     handleBlur,
     setFieldTouched,
-    nextField,
     validationSchema,
   } = props;
 
@@ -75,7 +73,7 @@ const FormDropdown = <T extends ObjectOfAny>(props: Props<T>) => {
           ))}
         </Select>
       ) : (
-        <Grid columns={6} gapX={20} gapY={20}>
+        <Grid columns='6' gapX='20' gapY='20'>
           {dropdown.options.map((item,) => (
             <GridItem key={item.value}>
               <Text onClick={onClick(item.value)} bold={item.value === currentValue}>{item.label}</Text>

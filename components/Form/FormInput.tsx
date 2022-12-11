@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo } from 'react';
+import React, { memo } from 'react';
 import _get from 'lodash.get';
 import { FormikErrors, FormikHandlers, FormikHelpers, FormikTouched } from 'formik';
 import { FormError, FormGroupItem, FormTitle, FormInput as Input } from './components';
@@ -14,9 +14,8 @@ type Props<T> = {
   setFieldValue: FormikHelpers<T>['setFieldValue'];
   handleBlur: FormikHandlers['handleBlur'];
   setFieldTouched: FormikHelpers<T>['setFieldTouched'];
-  nextField?: string;
   validationSchema: FormProps<T>['validationSchema'];
-} /*& InputProps*/;
+}
 
 const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
   const {
@@ -28,7 +27,6 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
     setFieldValue,
     handleBlur,
     setFieldTouched,
-    nextField,
     validationSchema,
   } = props;
 
@@ -43,10 +41,8 @@ const FormInput = <T extends ObjectOfAny>(props: Props<T>) => {
   const hasError = alreadyTouched && !!errorMessage;
   const currentValue = _get(values, input.field, '');
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const onChange = (value: string) => {
     let nextValue = value
-
 
     if (input.template) {
       const nextChar = input.template[value.length];
