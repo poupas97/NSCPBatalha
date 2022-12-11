@@ -4,5 +4,7 @@ export type IProduct = {
   price: number
   image: string
   description: string
-  category: string
+  category: IProductCategory
 }
+
+export type IProductCategory = string

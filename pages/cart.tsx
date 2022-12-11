@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Box from '~/primitive/Box'
 import Button from '~/primitive/Button'
 import Grid, { GridItem } from '~/primitive/Grid'
@@ -12,35 +12,35 @@ const Cart = () => {
   return (
     <>
       <Grid columns='6' gapX='20' gapY='20'>
-        <GridItem colSpan={3}>
+        <GridItem key="product" colSpan={3}>
           <Text bold type='6'>Product</Text>
         </GridItem>
-        <GridItem>
+        <GridItem key="quantity">
           <Text bold type='6'>Quantity</Text>
         </GridItem>
-        <GridItem colSpan={2}>
+        <GridItem key="total" colSpan={2}>
           <Text bold type='6'>Total</Text>
         </GridItem>
         <>
           {createArray(2).map((_, index) => (
-            <>
-              <GridItem key={index} >
+            <Fragment key={index}>
+              <GridItem key={`image-${index}`} >
                 <Image src="/images/product-2.jpeg" />
               </GridItem>
-              <GridItem key={index} colSpan={2} vertical="center">
+              <GridItem key={`product-${index}`} colSpan={2} vertical="center">
                 <Text>{`Product ${index + 1}`}</Text>
                 <Text bold type='6'>{`€ ${3.1 * (index + 1)}`}</Text>
               </GridItem>
-              <GridItem key={index} vertical="center">
+              <GridItem key={`quantity-${index}`} vertical="center">
                 <Text>{`${index + 1}`}</Text>
               </GridItem>
-              <GridItem key={index} vertical="center">
+              <GridItem key={`price-${index}`} vertical="center">
                 <Text bold type='6'>{`€ ${3.1 * (index + 1)}`}</Text>
               </GridItem>
-              <GridItem key={index} vertical="center">
+              <GridItem key={`delete-${index}`} vertical="center">
                 <Icon name='delete' />
               </GridItem>
-            </>
+            </Fragment>
           ))}
         </>
       </Grid>
