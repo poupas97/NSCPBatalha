@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import Loading from '~/components/Loading'
 import ProductGrid from '~/components/ProductGrid'
+import useFetch from '~/hooks/useFetch'
 import Box from '~/primitive/Box'
 import Image from '~/primitive/Image'
 import Row from '~/primitive/Row'
@@ -8,7 +10,6 @@ import { IProduct } from '~/types/product'
 
 const Home = () => {
   const [carrousel, setCarrousel] = useState(0)
-  const [products, setProducts] = useState<IProduct[]>()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,12 +25,7 @@ const Home = () => {
     }
   }, [])
 
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(json => setProducts(json))
-  }, [])
-
+  const state = useFetch<IProduct[]>('https://fakestoreapi.com/products')
 
   return (
     <>
@@ -45,7 +41,9 @@ const Home = () => {
         <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: false ? 'black' : 'gray' }}>Hot Sales</Text>
       </Row>
 
-      <ProductGrid columns='4' products={products || []} pageInfo={{ page: 0, size: 1000 }} />
+      {state.loading ? <Loading size='50' /> :
+        <ProductGrid columns='4' products={state.data || []} pageInfo={{ page: 0, size: 1000 }} />
+      }
     </>
   )
 }

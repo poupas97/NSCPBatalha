@@ -3,6 +3,8 @@ import React, { createRef, useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import { FormRefProps } from '~/components/Form'
 import Form from '~/components/Form/Form'
+import Loading from '~/components/Loading'
+import useFetch from '~/hooks/useFetch'
 import Box from '~/primitive/Box'
 import Button from '~/primitive/Button'
 import Grid, { GridItem } from '~/primitive/Grid'
@@ -19,17 +21,11 @@ const Product = () => {
 
   const { id } = router.query
 
-  const [product, setProduct] = useState<IProduct>()
+  const state = useFetch<IProduct>(`https://fakestoreapi.com/products/${id}`)
 
-  useEffect(() => {
-    if (!id) return;
+  if (state.loading) return <Loading size='50' />
 
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then(res => res.json())
-      .then(json => setProduct(json))
-  }, [id])
-
-  if (!product) return null
+  if (!state.data) return null
 
   const addToCart = async () => {
     const result = await ref.current?.onSubmit()
@@ -39,24 +35,24 @@ const Product = () => {
 
   return (
     <>
-      <Text bold type='7' css={{ marginVertical: '$50' }}>{product.title}</Text>
+      <Text bold type='7' css={{ marginVertical: '$50' }}>{state.data.title}</Text>
       <Grid columns='7' gapX='20'>
         <GridItem>
           <Grid columns='2' gapX='20' gapY='20'>
             {createArray(4).map((_, index) => (
               <GridItem key={index} >
-                <Image src={product.image} />
+                <Image src={state.data!.image} />
               </GridItem>
             ))}
           </Grid>
         </GridItem>
         <GridItem colSpan={4}>
           <Box flex vertical='center' >
-            <Image src={product.image} />
+            <Image src={state.data.image} />
           </Box>
         </GridItem>
         <GridItem colSpan={2}>
-          <Text>{product.description}</Text>
+          <Text>{state.data.description}</Text>
           <Form
             ref={ref}
             validationSchema={getValidationSchema()}
@@ -73,7 +69,7 @@ const Product = () => {
               min: 1,
             }]}
           />
-          <Text bold>{`€ ${product.price}`}</Text>
+          <Text bold>{`€ ${state.data.price}`}</Text>
           <Button text='+ Add to cart' onClick={addToCart} />
         </GridItem>
       </Grid>

@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
+import Loading from '~/components/Loading'
 import Pagination from '~/components/Pagination'
 import ProductFilters from '~/components/ProductFilters'
 import ProductGrid from '~/components/ProductGrid'
+import useFetch from '~/hooks/useFetch'
 import Grid, { GridItem } from '~/primitive/Grid'
 import Text from '~/primitive/Text'
 import { IProduct } from '~/types/product'
@@ -9,16 +11,11 @@ import { IProduct } from '~/types/product'
 const PAGE_SIZE = 9
 
 const Products = () => {
-  const [products, setProducts] = useState<IProduct[]>()
   const [selectedCategory, setSelectedCategory] = useState<string>()
   const [page, setPage] = useState(0)
   const [search, setSearch] = useState<string>()
 
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(json => setProducts(json))
-  }, [])
+  const state = useFetch<IProduct[]>('https://fakestoreapi.com/products')
 
   const onClickCategories = (category: string) => () => {
     if (selectedCategory === category) {
@@ -35,14 +32,14 @@ const Products = () => {
   }
 
   const filteredProducts = useMemo(() => {
-    if (!products) return []
+    if (!state.data) return []
 
     let toReturn: IProduct[] = []
 
     if (!selectedCategory)
-      toReturn = products
+      toReturn = state.data
     else
-      products.filter(it => it.category === selectedCategory)
+      toReturn = state.data.filter(it => it.category === selectedCategory)
 
     if (!search) return toReturn
 
@@ -52,7 +49,9 @@ const Products = () => {
       it.title.toLocaleLowerCase().includes(searchLowerCase) ||
       it.description.toLocaleLowerCase().includes(searchLowerCase)
     )
-  }, [products, selectedCategory, search])
+  }, [state.data, selectedCategory, search])
+
+  const { length: filteredProductsLength } = filteredProducts
 
   return (
     <Grid columns='3' gapX='50'>
@@ -65,11 +64,20 @@ const Products = () => {
         />
       </GridItem>
       <GridItem colSpan={2}>
-        <Text type='4' css={{ marginBottom: '$20' }}>{`Showing ${9} items of ${9}`}</Text>
+        {state.loading ? <Loading size='50' /> :
+          <>
+            <Text type='4' css={{ marginBottom: '$20' }}>
+              {`Showing from ${1 + PAGE_SIZE * page
+                } to ${filteredProductsLength < PAGE_SIZE * page + PAGE_SIZE ?
+                  filteredProductsLength : PAGE_SIZE * page + PAGE_SIZE
+                } items in total, of ${filteredProductsLength}`}
+            </Text>
 
-        <ProductGrid products={filteredProducts} pageInfo={{ page, size: PAGE_SIZE }} />
+            <ProductGrid products={filteredProducts} pageInfo={{ page, size: PAGE_SIZE }} />
 
-        <Pagination onClick={onChangePage} pages={Math.ceil(filteredProducts.length / PAGE_SIZE)} />
+            <Pagination onClick={onChangePage} pages={Math.ceil(filteredProductsLength / PAGE_SIZE)} />
+          </>
+        }
       </GridItem>
     </Grid>
   )

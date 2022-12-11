@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import Loading from '~/components/Loading'
+import useFetch from '~/hooks/useFetch'
 import Box from '~/primitive/Box'
 import Input from '~/primitive/Input'
 import Text from '~/primitive/Text'
 import { styled } from '~/theme'
+import { IProductCategory } from '~/types/product'
 
 const SearchInput = styled(Input, {
   marginBottom: '$20',
@@ -18,20 +21,13 @@ interface Props {
 const ProductFilters = (props: Props) => {
   const { onClickCategories, selectedCategory, search, setSearch } = props
 
-  const [categories, setCategories] = useState<string[]>()
-
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products/categories')
-      .then(res => res.json())
-      .then(json => setCategories(json))
-  }, [])
+  const state = useFetch<IProductCategory[]>('https://fakestoreapi.com/products/categories')
 
   return (
     <Box flex>
       <SearchInput placeholder='Search' value={search} onChange={setSearch} />
-
       <Text type='6'>Categories</Text>
-      {categories?.map(it => (
+      {state.loading ? <Loading size='50' /> : state.data?.map(it => (
         <Text
           key={it}
           bold={it === selectedCategory}
@@ -39,7 +35,8 @@ const ProductFilters = (props: Props) => {
         >
           {it}
         </Text>
-      ))}
+      ))
+      }
     </Box>
   )
 }
