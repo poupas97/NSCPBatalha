@@ -1,11 +1,8 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 import { styled } from '~/theme'
 
-interface Props {
-  label: string
-  onClick: () => void
-  selected: boolean
-}
+
 
 const StyledSpan = styled('span', {
   marginHorizontal: '$20',
@@ -24,9 +21,17 @@ const StyledSpan = styled('span', {
   },
 })
 
-const NavbarItem = ({ label, onClick, selected }: Props) => {
+interface Props {
+  label: string
+  route: string
+  includes?: boolean
+}
+
+const NavbarItem = ({ label, route }: Props) => {
+  const { push, asPath } = useRouter()
+
   return (
-    <StyledSpan onClick={onClick} data-selected={selected}>{label}</StyledSpan>
+    <StyledSpan onClick={() => push(route)} data-selected={asPath === route || asPath.includes(route)}>{label}</StyledSpan>
   )
 }
 

@@ -1,9 +1,11 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Box from '~/primitive/Box'
-import Navbar from '~/components/Navbar'
 import Footer from '~/components/Footer'
+import Navbar from '~/components/Navbar'
+import TopBar from '~/components/TopBar'
 import '../styles/globals.css'
+import CartContext from '~/contexts/cartContext'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,11 +16,15 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      <TopBar />
 
-      <Box flex css={{ margin: '0 20%', paddingVertical: '$50', }}>
-        <Component {...pageProps} />
-      </Box>
+      <CartContext>
+        <Navbar />
+
+        <Box flex css={{ margin: '0 20%', paddingVertical: '$50', }}>
+          <Component {...pageProps} />
+        </Box>
+      </CartContext>
 
       <Footer />
     </>

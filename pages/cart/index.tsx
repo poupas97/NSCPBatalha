@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react'
+import { useCartContext } from '~/contexts/cartContext'
 import Box from '~/primitive/Box'
 import Button from '~/primitive/Button'
 import Grid, { GridItem } from '~/primitive/Grid'
 import Icon from '~/primitive/Icon'
 import Image from '~/primitive/Image'
+import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
 import { CheckoutRoute } from '~/routes'
-import { createArray } from '~/utils/array'
 
 const Cart = () => {
+  const { items } = useCartContext()
+
   return (
     <>
       <Grid columns='6' gapX='20' gapY='20'>
@@ -22,20 +25,24 @@ const Cart = () => {
           <Text bold type='6'>Total</Text>
         </GridItem>
         <>
-          {createArray(2).map((_, index) => (
+          {items.map((it, index) => (
             <Fragment key={index}>
               <GridItem key={`image-${index}`} >
-                <Image src="/images/product-2.jpeg" />
+                <Image src={it.item.image} />
               </GridItem>
               <GridItem key={`product-${index}`} colSpan={2} vertical="center">
-                <Text>{`Product ${index + 1}`}</Text>
-                <Text bold type='6'>{`€ ${3.1 * (index + 1)}`}</Text>
+                <Text>{it.item.title}</Text>
+                <Row>
+                  <Text type='6'>{it.size}</Text>
+                  &nbsp;<Text>|</Text>&nbsp;
+                  <Text type='6'>{`€ ${it.item.price}`}</Text>
+                </Row>
               </GridItem>
               <GridItem key={`quantity-${index}`} vertical="center">
-                <Text>{`${index + 1}`}</Text>
+                <Text>{it.quantity}</Text>
               </GridItem>
               <GridItem key={`price-${index}`} vertical="center">
-                <Text bold type='6'>{`€ ${3.1 * (index + 1)}`}</Text>
+                <Text type='6'>{`€ ${it.item.price * it.quantity}`}</Text>
               </GridItem>
               <GridItem key={`delete-${index}`} vertical="center">
                 <Icon name='delete' />

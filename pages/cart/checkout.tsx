@@ -19,19 +19,18 @@ const Checkout = () => {
         ref={ref}
         items={[
           [
-            { type: 'input', field: 'test', label: 'Fist Name' },
-            { type: 'input', field: 'test 1', label: 'Last Name' },
-          ],
-          { type: 'input', field: 'test 2', label: 'Country' },
-          [
-            { type: 'input', field: 'test 3', label: 'Address' },
-            { type: 'input', field: 'test 4', label: 'Postcode / ZIP' },
+            { type: 'input', field: 'firstName', label: 'Fist Name' },
+            { type: 'input', field: 'lastName', label: 'Last Name' },
           ],
           [
-            { type: 'input', field: 'test 5', label: 'Phone' },
-            { type: 'input', field: 'test 6', label: 'Email' },
+            { type: 'input', field: 'address', label: 'Address' },
+            { type: 'input', field: 'postCode', label: 'Postcode / ZIP' },
           ],
-          { type: 'input', field: 'test 7', label: 'Order notes' },
+          [
+            { type: 'input', field: 'phone', label: 'Phone' },
+            { type: 'input', field: 'email', label: 'Email' },
+          ],
+          { type: 'input', field: 'orderNotes', label: 'Order notes' },
         ]}
         validationSchema={getValidationSchema()}
       />
@@ -46,7 +45,11 @@ export default Checkout
 
 function getValidationSchema() {
   return Yup.object().shape({
-    size: Yup.string().required('Required'),
-    quantity: Yup.number().min(1, 'Minimum is 1').required('Required'),
+    firstName: Yup.string().required('Required'),
+    lastName: Yup.string().required('Required'),
+    address: Yup.string().required('Required'),
+    postCode: Yup.string().required('Required'),
+    phone: Yup.string().required('Required'),
+    email: Yup.string().required('Required'),
   });
 }
