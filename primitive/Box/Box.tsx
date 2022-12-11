@@ -1,4 +1,5 @@
 import { CSS } from '@stitches/react'
+import { HTMLProps } from 'react'
 import { styled } from '~/theme'
 
 const StyledBox = styled('div', {
@@ -52,7 +53,7 @@ const StyledBox = styled('div', {
 })
 
 export interface Props {
-  children: string | JSX.Element | JSX.Element[]
+  children: HTMLProps<HTMLDivElement>['children']
   flex?: boolean
   vertical?: 'top' | 'center' | 'bottom'
   horizontal?: 'start' | 'center' | 'end'

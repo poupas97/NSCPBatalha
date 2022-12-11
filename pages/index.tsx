@@ -45,7 +45,7 @@ const Home = () => {
         <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: false ? 'black' : 'gray' }}>Hot Sales</Text>
       </Row>
 
-      <ProductGrid products={products} />
+      <ProductGrid columns='4' products={products || []} pageInfo={{ page: 0, size: 1000 }} />
     </>
   )
 }

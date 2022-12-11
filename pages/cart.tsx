@@ -11,7 +11,7 @@ import { createArray } from '~/utils/array'
 const Cart = () => {
   return (
     <>
-      <Grid columns={6} gapX={20} gapY={20}>
+      <Grid columns='6' gapX='20' gapY='20'>
         <GridItem colSpan={3}>
           <Text bold type='6'>Product</Text>
         </GridItem>

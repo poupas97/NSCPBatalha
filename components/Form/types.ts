@@ -7,7 +7,7 @@ export type InputType = {
   locked?: boolean;
   type?: 'input';
   template?: string;
-} /*& Pick<InputProps, 'placeholder' | 'keyboardType' | 'exclusionExpression' | 'noKeyboardValidation'>*/;
+}
 
 export type DropdownOption = { label: string, value: string }
 
