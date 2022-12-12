@@ -45,7 +45,7 @@ const ProductGrid = ({ products, pageInfo, columns }: Props) => {
         <GridItem key={index} >
           <Container flex css={{ flex: 1, }} onClick={onClick(item.id)}>
             <Box flex horizontal='center' css={{ flex: 1, }}>
-              <Image src={item.image} />
+              <Image src={item.image} alt="product image" />
             </Box>
             <Text>{item.title}</Text>
             <Text bold>{`€ ${item.price}`}</Text>

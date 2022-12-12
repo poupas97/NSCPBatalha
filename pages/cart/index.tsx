@@ -29,7 +29,7 @@ const Cart = () => {
           {items.map((it, index) => (
             <Fragment key={index}>
               <GridItem key={`image-${index}`} >
-                <Image src={it.item.image} />
+                <Image src={it.item.image} alt="product image" />
               </GridItem>
               <GridItem key={`product-${index}`} colSpan={2} vertical="center">
                 <Text>{it.item.title}</Text>

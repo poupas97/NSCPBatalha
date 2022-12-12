@@ -4,9 +4,8 @@ import Box from '~/primitive/Box'
 import Footer from '~/components/Footer'
 import Navbar from '~/components/Navbar'
 import TopBar from '~/components/TopBar'
-import '../styles/globals.css'
 import CartContext from '~/contexts/cartContext'
-import ModalContext from '~/contexts/modalContext'
+import '../styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

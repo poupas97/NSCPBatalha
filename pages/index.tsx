@@ -31,7 +31,7 @@ const Home = () => {
     <>
       <Box flex css={{ backgroundColor: 'green', paddingVertical: '$20' }}>
         <Box css={{ width: '30%' }}>
-          <Image src={`images/product-${carrousel + 1}.jpeg`} />
+          <Image src={`images/product-${carrousel + 1}.jpeg`} alt={`carrousel-${carrousel + 1}`} />
         </Box>
       </Box>
 

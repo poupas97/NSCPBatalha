@@ -2,8 +2,6 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { styled } from '~/theme'
 
-
-
 const StyledSpan = styled('span', {
   marginHorizontal: '$20',
   padding: '$5',
