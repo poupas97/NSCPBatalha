@@ -3,7 +3,7 @@ import React from 'react'
 import { styled } from '~/theme'
 
 export interface Props {
-  children: string
+  children: string | number
   type?: '4' | '5' | '6' | '7'
   bold?: boolean
   color?: 'red'

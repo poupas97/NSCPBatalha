@@ -39,11 +39,11 @@ const FormNumber = <T extends ObjectOfAny>(props: Props<T>) => {
   const alreadyTouched = !!_get(touched, input.field);
   const errorMessage = (alreadyTouched ? _get(errors, input.field) : null) as string | null;
   const hasError = alreadyTouched && !!errorMessage;
-  const currentValue = _get(values, input.field, input.min);
+  const currentValue = _get(values, input.field, '');
 
   const onChange = (value: string) => {
     setFieldTouched(input.field, true);
-    setFieldValue(input.field, value);
+    setFieldValue(input.field, Number(value));
   };
 
   return (

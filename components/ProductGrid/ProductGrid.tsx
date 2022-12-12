@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
 import Box from '~/primitive/Box'
-import Button from '~/primitive/Button'
 import Grid, { GridItem, } from '~/primitive/Grid'
 import Image from '~/primitive/Image'
 import Text from '~/primitive/Text'
@@ -10,6 +9,8 @@ import { styled } from '~/theme'
 import { IProduct } from '~/types/product'
 
 const Container = styled(Box, {
+  borderBottom: '1px solid $green',
+
   '&:hover': {
     boxShadow: 'green 5px 5px 5px',
   },
@@ -48,7 +49,6 @@ const ProductGrid = ({ products, pageInfo, columns }: Props) => {
             </Box>
             <Text>{item.title}</Text>
             <Text bold>{`€ ${item.price}`}</Text>
-            <Button text='+ Add to cart' />
           </Container>
         </GridItem>
       ))}
