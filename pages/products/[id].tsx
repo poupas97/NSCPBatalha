@@ -46,14 +46,14 @@ const Product = () => {
           <Grid columns='2' gapX='20' gapY='20'>
             {createArray(4).map((_, index) => (
               <GridItem key={index} >
-                <Image src={state.data!.image} />
+                <Image src={state.data!.image} alt={`product-image-${index}`} />
               </GridItem>
             ))}
           </Grid>
         </GridItem>
         <GridItem colSpan={4}>
           <Box flex vertical='center' >
-            <Image src={state.data.image} />
+            <Image src={state.data.image} alt="current product image" />
           </Box>
         </GridItem>
         <GridItem colSpan={2}>

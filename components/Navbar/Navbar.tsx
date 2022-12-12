@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <Root vertical='center' >
       <Box css={{ maxWidth: '75px', maxHeight: '75px' }} onClick={() => push(RootRoute)}>
-        <Image src='images/logo.png' />
+        <Image src='images/logo.png' alt="logo" />
       </Box>
       <Row horizontal='center' css={{ flex: 1, }}>
         <NavbarItem label='Products' route={ProductsRoute} />
