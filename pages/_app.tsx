@@ -6,6 +6,7 @@ import Navbar from '~/components/Navbar'
 import TopBar from '~/components/TopBar'
 import '../styles/globals.css'
 import CartContext from '~/contexts/cartContext'
+import ModalContext from '~/contexts/modalContext'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

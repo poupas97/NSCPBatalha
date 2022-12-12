@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Modal from '~/components/Modal/modal'
 import { useCartContext } from '~/contexts/cartContext'
 import Box from '~/primitive/Box'
 import Button from '~/primitive/Button'
@@ -45,7 +46,15 @@ const Cart = () => {
                 <Text type='6'>{`€ ${it.item.price * it.quantity}`}</Text>
               </GridItem>
               <GridItem key={`delete-${index}`} vertical="center">
-                <Icon name='delete' />
+                <Row vertical='center' horizontal='center' css={{ cursor: 'pointer' }}>
+                  <Modal
+                    trigger={<Icon name='edit' size={15} />}
+                    title='Edit product'
+                  >
+                    <Text>sssss</Text>
+                  </Modal>
+                  <Icon name='delete' />
+                </Row>
               </GridItem>
             </Fragment>
           ))}
