@@ -21,7 +21,7 @@ interface Props {
 const ProductFilters = (props: Props) => {
   const { onClickCategories, selectedCategory, search, setSearch } = props
 
-  const state = useFetch<IProductCategory[]>('https://fakestoreapi.com/products/categories')
+  const state = useFetch<IProductCategory[]>('https://dummyjson.com/products/categories')
 
   return (
     <Box flex>

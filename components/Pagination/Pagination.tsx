@@ -31,7 +31,7 @@ const Pagination = ({ pages, onClick }: Props) => {
         <PageButton
           key={index}
           text={index + 1}
-          isLast={index === 2}
+          isLast={index === pages - 1}
           onClick={onClick(index)}
         />
       ))}

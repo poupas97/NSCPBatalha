@@ -22,6 +22,7 @@ export const FormGroupItem = styled(Box, {
 export const FormTitle = styled(Text, {
   display: 'flex',
   width: '100%',
+  fontWeight: 'bold',
 
   variants: {
     hasError: {

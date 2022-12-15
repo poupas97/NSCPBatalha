@@ -40,7 +40,15 @@ const { styled, keyframes } = createStitches({
       paddingLeft: value,
       paddingRight: value,
     }),
-  }
+  },
+  media: {
+    initial: '(min-width: 1px)',
+    xs: '(min-width: 320px)',
+    sm: '(min-width: 481px)',
+    md: '(min-width: 769px)',
+    lg: '(min-width: 1025px)',
+    xl: '(min-width: 1201px)',
+  },
 });
 
 export { styled, keyframes }

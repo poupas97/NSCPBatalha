@@ -5,9 +5,27 @@ import Footer from '~/components/Footer'
 import Navbar from '~/components/Navbar'
 import TopBar from '~/components/TopBar'
 import CartContext from '~/contexts/cartContext'
+import { styled } from '~/theme'
 import '../styles/globals.css'
 
-export default function App({ Component, pageProps }: AppProps) {
+const Container = styled(Box, {
+  position: 'relative',
+  display: 'flex',
+  paddingVertical: '$50',
+  paddingHorizontal: '5%',
+
+  '@sm': {
+    paddingHorizontal: '10%',
+  },
+  '@md': {
+    paddingHorizontal: '15%',
+  },
+  '@lg': {
+    paddingHorizontal: '20%',
+  },
+})
+
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
@@ -21,12 +39,14 @@ export default function App({ Component, pageProps }: AppProps) {
       <CartContext>
         <Navbar />
 
-        <Box flex css={{ margin: '0 20%', paddingVertical: '$50', }}>
+        <Container>
           <Component {...pageProps} />
-        </Box>
+        </Container>
       </CartContext>
 
       <Footer />
     </>
   )
 }
+
+export default App 
