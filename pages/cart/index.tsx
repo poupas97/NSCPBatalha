@@ -16,22 +16,22 @@ const Cart = () => {
   return (
     <>
       <Grid columns='6' gapX='20' gapY='20'>
-        <GridItem key="product" colSpan={3}>
+        <GridItem key="product" colSpan="3">
           <Text bold type='6'>Product</Text>
         </GridItem>
         <GridItem key="quantity">
           <Text bold type='6'>Quantity</Text>
         </GridItem>
-        <GridItem key="total" colSpan={2}>
+        <GridItem key="total" colSpan="2">
           <Text bold type='6'>Total</Text>
         </GridItem>
         <>
           {items.map((it, index) => (
             <Fragment key={index}>
               <GridItem key={`image-${index}`} >
-                <Image src={it.item.image} alt="product image" />
+                <Image src={it.item.images[0]} alt="product image" />
               </GridItem>
-              <GridItem key={`product-${index}`} colSpan={2} vertical="center">
+              <GridItem key={`product-${index}`} colSpan="2" vertical="center">
                 <Text>{it.item.title}</Text>
                 <Row>
                   <Text type='6'>{it.size}</Text>

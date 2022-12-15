@@ -32,7 +32,7 @@ const Input = ({ onChange, value, ...rest }: Props) => {
     onChange(e.target.value)
   };
 
-  return <StyledInput onChange={handleChange} value={value || ''}{...rest} />
+  return <StyledInput onChange={handleChange} value={value || ''} {...rest} />
 }
 
 export default Input

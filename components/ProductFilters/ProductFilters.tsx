@@ -35,8 +35,7 @@ const ProductFilters = (props: Props) => {
         >
           {it}
         </Text>
-      ))
-      }
+      ))}
     </Box>
   )
 }

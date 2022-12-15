@@ -62,7 +62,6 @@ export interface Props {
   css?: CSS
 }
 
-
 const Box = (props: Props) => {
   return <StyledBox data-type={props.onClick ? 'click' : undefined}{...props} />
 }
