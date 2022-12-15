@@ -48,6 +48,15 @@ const BarProductFilters = styled('div', {
   }
 })
 
+const MenuBox = styled('div', {
+  '@initial': {
+    display: 'block'
+  },
+  '@md': {
+    display: 'none'
+  }
+})
+
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>()
   const [page, setPage] = useState(0)
@@ -94,9 +103,9 @@ const Products = () => {
 
   return (
     <>
-      <div onClick={() => setOpen(true)}>
+      <MenuBox onClick={() => setOpen(true)}>
         <Icon name='menu' />
-      </div>
+      </MenuBox>
       <BarProductFilters open={open}>
         <ProductFilters
           onClickCategories={onClickCategories}
