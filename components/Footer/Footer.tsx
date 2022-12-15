@@ -40,7 +40,7 @@ const Footer = () => {
           <Text>It has roots in a piece of classical Latin literature from 45 BC</Text>
         </GridItem>
         <GridItem>
-          <Text>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus</Text>
+          <Text>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus</Text>
           <Text>The Extremes of Good and Evil</Text>
         </GridItem>
         <GridItem>
