@@ -2,33 +2,58 @@ import React from 'react'
 import Box from '~/primitive/Box'
 import Text from '~/primitive/Text'
 import Grid, { GridItem } from '~/primitive/Grid'
+import { styled } from '~/theme'
+
+const Root = styled(Box, {
+  backgroundColor: 'green',
+  paddingVertical: '$10',
+  paddingHorizontal: '5%',
+
+  '@sm': {
+    paddingHorizontal: '10%',
+  },
+  '@md': {
+    paddingHorizontal: '15%',
+  },
+  '@lg': {
+    paddingHorizontal: '20%',
+  },
+})
+
+const CopyrightBox = styled(Box, {
+  display: 'flex',
+  alignItems: 'center',
+  paddingTop: '$10',
+  marginTop: '$10',
+  borderTop: '1px solid rgba(255, 255, 255, 0.2)'
+})
 
 const Footer = () => {
   return (
-    <Box vertical='center' css={{ padding: '0 20%', paddingVertical: '$10', backgroundColor: 'green', }}>
+    <Root >
       <Grid columns='4' gapX='20'>
         <GridItem>
           Logo
         </GridItem>
         <GridItem>
-          <Text>qweuioqwe sdjkfkjsdhfkjhsdf sdhfkjjls dajgha jdghç vmncx,vm cxv z</Text>
-          <Text>sjjh sjk çflsdjjsfj slksd jljsdsdopisodf sd dskksdfj lkdfsj dskjsd</Text>
+          <Text>Contrary to popular belief, Lorem Ipsum is not simply random text.</Text>
+          <Text>It has roots in a piece of classical Latin literature from 45 BC</Text>
         </GridItem>
         <GridItem>
-          <Text>sjjh sjk h kjsdh kjsdhjs kjsd hkjsd hk sdfjhkjsdf kj s</Text>
-          <Text>sjjh sjk çflsdjjsfj slksd jljsdsdopisodf sd dskksdfj lkdfsj dskjsd</Text>
+          <Text>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus</Text>
+          <Text>The Extremes of Good and Evil</Text>
         </GridItem>
         <GridItem>
-          <Text>qreww rqeowruourq ioufdhj fkh alkdfljkdfh adsfjhasdkfhdsjf</Text>
-          <Text>erwtuiwe rgf gbfhgjk sfgd gçajncmnmn zzuhaiefawfauif euiierqtuiqiopu </Text>
+          <Text>The standard chunk of Lorem Ipsum used since the 1500</Text>
+          <Text>There are many variations of passages of Lorem Ipsum available</Text>
         </GridItem>
       </Grid>
-      <Box flex vertical='center' css={{ paddingTop: '$10', borderTop: '1px solid rgba(255, 255, 255, 0.2)' }}>
+      <CopyrightBox >
         <Text>
           Copyright © 20222020 All rights reserved | This template is made with by
         </Text>
-      </Box>
-    </Box>
+      </CopyrightBox>
+    </Root>
   )
 }
 

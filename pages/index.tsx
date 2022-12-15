@@ -25,7 +25,7 @@ const Home = () => {
     }
   }, [])
 
-  const state = useFetch<IProduct[]>('https://fakestoreapi.com/products')
+  const state = useFetch<{ products: IProduct[] }>('https://dummyjson.com/products')
 
   return (
     <>
@@ -42,7 +42,7 @@ const Home = () => {
       </Row>
 
       {state.loading ? <Loading size='50' /> :
-        <ProductGrid columns='4' products={state.data || []} pageInfo={{ page: 0, size: 1000 }} />
+        <ProductGrid columns='4' products={state.data?.products || []} pageInfo={{ page: 0, size: 1000 }} />
       }
     </>
   )

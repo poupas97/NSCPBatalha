@@ -40,12 +40,12 @@ const ProductGrid = ({ products, pageInfo, columns }: Props) => {
   }, [products, pageInfo])
 
   return (
-    <Grid columns={columns || '3'} gapX='20' gapY='20'>
+    <Grid columns={{ '@initial': '1', '@md': '2', '@lg': '3' }} gapX='20' gapY='20'>
       {slicedProducts.map((item, index) => (
         <GridItem key={index} >
           <Container flex css={{ flex: 1, }} onClick={onClick(item.id)}>
             <Box flex horizontal='center' css={{ flex: 1, }}>
-              <Image src={item.image} alt="product image" />
+              <Image src={item.images[0]} alt="product image" />
             </Box>
             <Text>{item.title}</Text>
             <Text bold>{`€ ${item.price}`}</Text>

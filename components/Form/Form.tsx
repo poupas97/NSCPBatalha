@@ -48,9 +48,9 @@ const Form = forwardRef(<T extends ObjectOfAny>(props: FormProps<T>, ref: Forwar
 
         const validateErrors = await validateForm();
 
-        // if (!isEmpty(validateErrors)) {
-        //   return undefined;
-        // }
+        if (Object.keys(validateErrors).length) {
+          return undefined;
+        }
 
         return values;
       },

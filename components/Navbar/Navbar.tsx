@@ -11,9 +11,19 @@ import { useRouter } from 'next/router'
 import { useCartContext } from '~/contexts/cartContext'
 
 const Root = styled(Row, {
-  padding: '0 20%',
+  boxShadow: 'grey 0px 10px 15px -5px',
   paddingVertical: '$10',
-  boxShadow: 'grey 0px 10px 15px -5px'
+  paddingHorizontal: '5%',
+
+  '@sm': {
+    paddingHorizontal: '10%',
+  },
+  '@md': {
+    paddingHorizontal: '15%',
+  },
+  '@lg': {
+    paddingHorizontal: '20%',
+  },
 })
 
 const Navbar = () => {
