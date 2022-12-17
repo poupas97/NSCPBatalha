@@ -110,7 +110,7 @@ const Slider = () => {
     <>
       <SlideshowContainer>
         {IMAGES.map((image, index) => (
-          <MySlides active={carrousel === index}>
+          <MySlides key={index} active={carrousel === index}>
             <StyledImage src={`images/${image}`} alt={`images/${image}`} />
           </MySlides>
         ))}
@@ -121,7 +121,7 @@ const Slider = () => {
 
       <div style={{ textAlign: "center", marginTop: '10px' }}>
         {IMAGES.map((_, index) => (
-          <Dot active={carrousel === index} onClick={() => setCarrousel(index)}></Dot>
+          <Dot key={index} active={carrousel === index} onClick={() => setCarrousel(index)} />
         ))}
       </div>
     </>
