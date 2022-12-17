@@ -1,39 +1,17 @@
-import { useEffect, useState } from 'react'
 import Loading from '~/components/Loading'
 import ProductGrid from '~/components/ProductGrid'
+import Slider from '~/components/Slider'
 import useFetch from '~/hooks/useFetch'
-import Box from '~/primitive/Box'
-import Image from '~/primitive/Image'
 import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
 import { IProduct } from '~/types/product'
 
 const Home = () => {
-  const [carrousel, setCarrousel] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCarrousel(current => {
-        const next = current + 1
-
-        return next === 2 ? 0 : next
-      })
-    }, 2000)
-
-    return () => {
-      clearInterval(interval)
-    }
-  }, [])
-
   const state = useFetch<{ products: IProduct[] }>('https://dummyjson.com/products')
 
   return (
     <>
-      <Box flex css={{ backgroundColor: 'green', paddingVertical: '$20' }}>
-        <Box css={{ width: '30%' }}>
-          <Image src={`images/product-${carrousel + 1}.jpeg`} alt={`carrousel-${carrousel + 1}`} />
-        </Box>
-      </Box>
+      <Slider />
 
       <Row horizontal='center' css={{ marginVertical: '$20' }}>
         <Text type='7' bold onClick={() => { }} css={{ marginRight: '$50', color: true ? 'black' : 'gray' }}>Best Sellers</Text>

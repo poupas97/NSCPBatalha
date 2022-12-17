@@ -11,11 +11,12 @@ const StyledImage = styled('img', {
 interface Props {
   src: string
   alt: string
+  className?: string
 }
 
-const Image = ({ src, alt }: Props) => {
+const Image = ({ src, alt, className }: Props) => {
   return (
-    <StyledImage src={src} alt={alt} />
+    <StyledImage src={src} alt={alt} className={className} />
   )
 }
 
