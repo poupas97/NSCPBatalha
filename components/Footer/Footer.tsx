@@ -3,7 +3,6 @@ import Box from '~/primitive/Box'
 import Text from '~/primitive/Text'
 import Grid, { GridItem } from '~/primitive/Grid'
 import { styled } from '~/theme'
-import Image from '~/primitive/Image'
 
 const Root = styled(Box, {
   backgroundColor: 'green',

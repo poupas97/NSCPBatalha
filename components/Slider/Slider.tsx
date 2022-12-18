@@ -1,6 +1,6 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from '~/primitive/Image'
 import { keyframes, styled } from '~/theme'
 
@@ -82,19 +82,19 @@ const IMAGES = ['download-0.jpeg', 'download-1.jpeg', 'download-2.jpeg']
 const Slider = () => {
   const [carrousel, setCarrousel] = useState(0)
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCarrousel(current => {
-  //       const next = current + 1
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCarrousel(current => {
+        const next = current + 1
 
-  //       return next === 3 ? 0 : next
-  //     })
-  //   }, 2000)
+        return next === IMAGES.length ? 0 : next
+      })
+    }, 2000)
 
-  //   return () => {
-  //     clearInterval(interval)
-  //   }
-  // }, [])
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   const plusSlides = (value: number) => () => {
     setCarrousel(current => {
