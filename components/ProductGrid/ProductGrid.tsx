@@ -6,10 +6,11 @@ import Image from '~/primitive/Image'
 import Text from '~/primitive/Text'
 import { ProductRoute } from '~/routes'
 import { styled } from '~/theme'
-import { IProduct } from '~/types/product'
+import { IProduct } from '~/types'
 
 const Container = styled(Box, {
   borderBottom: '1px solid $green',
+  height: '300px',
 
   '&:hover': {
     boxShadow: 'green 5px 5px 5px',
@@ -43,9 +44,9 @@ const ProductGrid = ({ products, pageInfo, columns }: Props) => {
     <Grid columns={{ '@initial': '1', '@md': '2', '@lg': '3' }} gapX='20' gapY='20'>
       {slicedProducts.map((item, index) => (
         <GridItem key={index} >
-          <Container flex css={{ flex: 1, }} onClick={onClick(item.id)}>
+          <Container flex css={{ flex: 1 }} onClick={onClick(item.id)}>
             <Box flex horizontal='center' css={{ flex: 1, }}>
-              <Image src={item.images[0]} alt="product image" />
+              <Image src={item.images[0]} alt="product image" respect="auto" />
             </Box>
             <Text>{item.title}</Text>
             <Text bold>{`€ ${item.price}`}</Text>

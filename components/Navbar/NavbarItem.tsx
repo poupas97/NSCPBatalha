@@ -3,12 +3,24 @@ import React from 'react'
 import { styled } from '~/theme'
 
 const StyledSpan = styled('span', {
-  marginHorizontal: '$20',
   padding: '$5',
   borderBottomStyle: 'solid',
   borderBottomWidth: '2px',
   borderBottomColor: 'transparent',
   cursor: 'pointer',
+
+  '@initial': {
+    marginHorizontal: '$5',
+  },
+  '@sm': {
+    marginHorizontal: '$10',
+  },
+  '@md': {
+    marginHorizontal: '$15',
+  },
+  '@lg': {
+    marginHorizontal: '$20',
+  },
 
   '&:hover': {
     borderBottomColor: '$gray',

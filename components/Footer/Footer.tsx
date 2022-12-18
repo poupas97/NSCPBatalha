@@ -3,6 +3,7 @@ import Box from '~/primitive/Box'
 import Text from '~/primitive/Text'
 import Grid, { GridItem } from '~/primitive/Grid'
 import { styled } from '~/theme'
+import Image from '~/primitive/Image'
 
 const Root = styled(Box, {
   backgroundColor: 'green',
@@ -31,10 +32,7 @@ const CopyrightBox = styled(Box, {
 const Footer = () => {
   return (
     <Root >
-      <Grid columns='4' gapX='20'>
-        <GridItem>
-          Logo
-        </GridItem>
+      <Grid columns='3' gapX='20'>
         <GridItem>
           <Text>Contrary to popular belief, Lorem Ipsum is not simply random text.</Text>
           <Text>It has roots in a piece of classical Latin literature from 45 BC</Text>

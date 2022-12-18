@@ -4,7 +4,7 @@ import Slider from '~/components/Slider'
 import useFetch from '~/hooks/useFetch'
 import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
-import { IProduct } from '~/types/product'
+import { IProduct } from '~/types'
 
 const Home = () => {
   const state = useFetch<{ products: IProduct[] }>('https://dummyjson.com/products')
@@ -20,7 +20,7 @@ const Home = () => {
       </Row>
 
       {state.loading ? <Loading size='50' /> :
-        <ProductGrid columns='4' products={state.data?.products || []} pageInfo={{ page: 0, size: 1000 }} />
+        <ProductGrid columns='4' products={state.data?.products.slice(0, 9) || []} pageInfo={{ page: 0, size: 1000 }} />
       }
     </>
   )

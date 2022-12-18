@@ -5,7 +5,7 @@ import Box from '~/primitive/Box'
 import Input from '~/primitive/Input'
 import Text from '~/primitive/Text'
 import { styled } from '~/theme'
-import { IProductCategory } from '~/types/product'
+import { IProductCategory } from '~/types'
 
 const SearchInput = styled(Input, {
   marginBottom: '$20',

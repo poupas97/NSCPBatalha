@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import { CartItem } from '~/types/cart'
+import { CartItem } from '~/types'
 
 const CONTEXT = createContext({
   items: [] as CartItem[],
