@@ -3,6 +3,7 @@ import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
 import Icon from '~/primitive/Icon'
 import { styled } from '~/theme'
+import { envs } from '~/utils/env'
 
 const Root = styled(Row, {
   backgroundColor: 'black',
@@ -26,10 +27,12 @@ const TopBar = () => {
   return (
     <Root vertical='center'>
       <Text>It is a long established fact that a reader will</Text>
-      <Row vertical='center' onClick={() => { }} >
-        <Icon name='user' />
-        <Text css={{ marginLeft: '$10' }}>Sign in</Text>
-      </Row>
+      {!envs.ffHideCart &&
+        <Row vertical='center' onClick={() => { }} >
+          <Icon name='user' />
+          <Text css={{ marginLeft: '$10' }}>Sign in</Text>
+        </Row>
+      }
     </Root>
   )
 }

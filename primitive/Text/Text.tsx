@@ -9,6 +9,7 @@ export interface Props {
   color?: 'red'
   onClick?: () => void
   css?: CSS
+  className?: string
 }
 
 const StyledSpan = styled('span', {

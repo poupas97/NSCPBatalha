@@ -1,3 +1,4 @@
+import { CSS } from '@stitches/react';
 import { styled } from '~/theme';
 
 export type IGridColumns = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
@@ -11,6 +12,7 @@ interface Props {
   columns: IGridColumns | Partial<Record<GridMediaQueries, IGridColumns>>;
   gapX?: GridGaps | Partial<Record<GridMediaQueries, GridGaps>>;
   gapY?: GridGaps | Partial<Record<GridMediaQueries, GridGaps>>;
+  css?: CSS
 }
 
 const StyledDiv = styled('div', {

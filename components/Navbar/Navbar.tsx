@@ -9,6 +9,7 @@ import Image from '~/primitive/Image'
 import { styled } from '~/theme'
 import { useRouter } from 'next/router'
 import { useCartContext } from '~/contexts/cartContext'
+import { envs } from '~/utils/env'
 
 const Root = styled(Row, {
   boxShadow: 'grey 0px 10px 15px -5px',
@@ -45,11 +46,15 @@ const Navbar = () => {
       </Box>
       <Row horizontal='center' css={{ flex: 1, }}>
         <NavbarItem label='Products' route={ProductsRoute} />
-        <NavbarItem label='Cart' route={CartRoute} />
+        {!envs.ffHideCart && <NavbarItem label='Cart' route={CartRoute} />}
       </Row>
       <Row vertical='center'>
-        <Icon name='cart' />
-        <Text css={{ marginLeft: '$10' }}>{`(${cartValue.qtt}) € ${cartValue.amount}`}</Text>
+        {envs.ffHideCart ? <></> :
+          <>
+            <Icon name='cart' />
+            <Text css={{ marginLeft: '$10' }}>{`(${cartValue.qtt}) € ${cartValue.amount}`}</Text>
+          </>
+        }
       </Row>
     </Root>
   )
