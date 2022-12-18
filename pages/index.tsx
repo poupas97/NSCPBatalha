@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Highlights from '~/components/Highlight'
 import Loading from '~/components/Loading'
 import ProductGrid from '~/components/ProductGrid'
 import Slider from '~/components/Slider'
@@ -28,6 +29,8 @@ const Home = () => {
   return (
     <>
       <Slider />
+
+      {/* <Highlights /> */}
 
       <Grid columns='3' css={{ marginVertical: '$20' }}>
         <GridItem horizontal='center'>
