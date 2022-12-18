@@ -14,7 +14,7 @@ const ProductGridMinions = ({ images, setCurrentImage }: Props) => {
       {images.map((image,) => (
         <GridItem key={image}>
           <Box onClick={() => setCurrentImage(image)}>
-            <Image src={image} alt={image} />
+            <Image src={image} alt={image} respect="width" />
           </Box>
         </GridItem>
       ))}

@@ -10,11 +10,12 @@ import useFetch from '~/hooks/useFetch'
 import Box from '~/primitive/Box'
 import Button from '~/primitive/Button'
 import Grid, { GridItem } from '~/primitive/Grid'
+import Icon from '~/primitive/Icon'
 import Image from '~/primitive/Image'
+import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
 import { styled } from '~/theme'
-import { CartItem } from '~/types/cart'
-import { IProduct } from '~/types/product'
+import { CartItem, IProduct } from '~/types'
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL',]
 
@@ -42,9 +43,9 @@ const Product = () => {
   const router = useRouter()
   const ref = createRef<FormRefProps<Omit<CartItem, 'item'>>>()
 
-  const { id } = router.query
+  const id = router.query?.id as (string | undefined)
 
-  const state = useFetch<IProduct>(`https://dummyjson.com/products/${id}`)
+  const state = useFetch<IProduct>(`https://dummyjson.com/products/${id}`, [id])
   const { setItems } = useCartContext()
   const [currentImage, setCurrentImage] = useState<string>()
 
@@ -64,11 +65,16 @@ const Product = () => {
 
   if (state.loading) return <Loading size='50' />
 
-  if (!state.data) return null
+  if (!state.data) return null;
 
   return (
     <>
-      <Text bold type='7' css={{ marginBottom: '$50' }}>{state.data.title}</Text>
+      <Row vertical='center' css={{ marginBottom: '$50' }}>
+        <div onClick={router.back}>
+          <Icon name='arrowLeft' />
+        </div>
+        <Text bold type='7' css={{ marginLeft: '$20' }}>{state.data.title}</Text>
+      </Row>
       <Grid columns={{ '@initial': '1', '@md': '6', }} gapX='20'>
         <LargeScreeProductMinions>
           <ProductGridMinions images={state.data.images} setCurrentImage={setCurrentImage} />
@@ -76,7 +82,7 @@ const Product = () => {
 
         <GridItem colSpan={{ '@initial': '1', '@md': '3', }} >
           <Box flex vertical='center'>
-            <Image src={currentImage || ''} alt="current product image" />
+            <Image src={currentImage || ''} alt="current product image" respect="width" />
           </Box>
 
         </GridItem>

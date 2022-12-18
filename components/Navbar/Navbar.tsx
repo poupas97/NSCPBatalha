@@ -40,8 +40,8 @@ const Navbar = () => {
 
   return (
     <Root vertical='center' >
-      <Box css={{ maxWidth: '75px', maxHeight: '75px' }} onClick={() => push(RootRoute)}>
-        <Image src='images/logo.png' alt="logo" />
+      <Box css={{ width: '75px', height: '75px' }} onClick={() => push(RootRoute)}>
+        <Image src='images/logo.png' alt="logo" respect="heigh" />
       </Box>
       <Row horizontal='center' css={{ flex: 1, }}>
         <NavbarItem label='Products' route={ProductsRoute} />

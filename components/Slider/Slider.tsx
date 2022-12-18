@@ -8,10 +8,21 @@ const fade = keyframes({
   from: { opacity: 0.4 },
   to: { opacity: 1 }
 })
+
 const SlideshowContainer = styled('div', {
-  maxWidth: '1000px',
   position: 'relative',
-  margin: 'auto',
+  display: 'flex',
+  backgroundColor: '#bbb',
+
+  '@initial': {
+    height: '200px',
+  },
+  '@md': {
+    height: '300px',
+  },
+  '@lg': {
+    height: '400px',
+  },
 })
 
 const Dot = styled('span', {
@@ -40,40 +51,30 @@ const Dot = styled('span', {
 const MySlides = styled('div', {
   display: 'none',
   animation: `${fade} 1.5s`,
+  justifyContent: 'center',
+  width: '100%',
 
   variants: {
     active: {
       true: {
-        display: 'block',
+        display: 'flex',
       }
     }
   }
-})
-
-const StyledImage = styled(Image, {
-  verticalAlign: 'middle',
-  width: '500px',
-  maxWidth: '500px',
 })
 
 const NavButtons = styled('a', {
   cursor: 'pointer',
   position: 'absolute',
   top: '50%',
-  width: 'auto',
-  padding: '16px',
+  padding: '8px',
   marginTop: '-22px',
   color: 'white',
-  fontWeight: 'bold',
-  fontSize: '18px',
   transition: '0.6s ease',
-  borderRadius: '0 3px 3px 0',
-  userSelect: 'none',
 
   '&:hover': {
     backgroundColor: 'rgba(0,0,0,0.8)'
   }
-
 })
 
 const IMAGES = ['download-0.jpeg', 'download-1.jpeg', 'download-2.jpeg']
@@ -111,7 +112,7 @@ const Slider = () => {
       <SlideshowContainer>
         {IMAGES.map((image, index) => (
           <MySlides key={index} active={carrousel === index}>
-            <StyledImage src={`images/${image}`} alt={`images/${image}`} />
+            <Image src={`images/${image}`} alt={`images/${image}`} />
           </MySlides>
         ))}
 
@@ -121,7 +122,11 @@ const Slider = () => {
 
       <div style={{ textAlign: "center", marginTop: '10px' }}>
         {IMAGES.map((_, index) => (
-          <Dot key={index} active={carrousel === index} onClick={() => setCarrousel(index)} />
+          <Dot
+            key={index}
+            active={carrousel === index}
+            onClick={() => setCarrousel(index)}
+          />
         ))}
       </div>
     </>

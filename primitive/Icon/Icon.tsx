@@ -1,7 +1,7 @@
 import * as Icons from "react-icons/fa";
 
 export interface Props {
-  name: 'delete' | 'cart' | 'user' | 'edit' | 'menu'
+  name: 'delete' | 'cart' | 'user' | 'edit' | 'menu' | 'arrowLeft'
   size?: number
 }
 
@@ -11,6 +11,7 @@ const MAPPER = {
   user: Icons.FaUser,
   edit: Icons.FaPen,
   menu: Icons.FaBars,
+  arrowLeft: Icons.FaAngleLeft,
 }
 
 const Icon = ({ name, size = 20 }: Props) => {

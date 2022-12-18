@@ -3,20 +3,34 @@ import { styled } from '~/theme'
 
 const StyledImage = styled('img', {
   display: 'block',
-  width: '100%',
-  maxHeight: '350px',
-  maxWidth: '350px',
+
+  variants: {
+    respect: {
+      heigh: {
+        width: 'auto',
+        height: '100%',
+      },
+      width: {
+        width: '100%',
+        height: 'auto',
+      },
+      auto: {
+        width: 'auto',
+        height: 'auto',
+      }
+    },
+  }
 })
 
 interface Props {
   src: string
   alt: string
-  className?: string
+  respect?: 'heigh' | 'width' | 'auto'
 }
 
-const Image = ({ src, alt, className }: Props) => {
+const Image = ({ src, alt, respect }: Props) => {
   return (
-    <StyledImage src={src} alt={alt} className={className} />
+    <StyledImage src={src} alt={alt} respect={respect} />
   )
 }
 

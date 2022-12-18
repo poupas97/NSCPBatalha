@@ -8,7 +8,7 @@ import Grid, { GridItem } from '~/primitive/Grid'
 import Icon from '~/primitive/Icon'
 import Text from '~/primitive/Text'
 import { styled } from '~/theme'
-import { IProduct } from '~/types/product'
+import { IProduct } from '~/types'
 
 const PAGE_SIZE = 12
 
@@ -50,11 +50,15 @@ const BarProductFilters = styled('div', {
 
 const MenuBox = styled('div', {
   '@initial': {
-    display: 'block'
+    display: 'block',
   },
   '@md': {
-    display: 'none'
+    display: 'none',
   }
+})
+
+const CloseBox = styled('div', {
+  padding: 10,
 })
 
 const Products = () => {
@@ -73,6 +77,7 @@ const Products = () => {
 
     setSelectedCategory(category)
     setPage(0)
+    setOpen(false)
   }
 
   const onChangePage = (page: number) => () => {
@@ -113,9 +118,9 @@ const Products = () => {
           search={search}
           setSearch={setSearch}
         />
-        <div onClick={() => setOpen(false)}>
+        <CloseBox onClick={() => setOpen(false)}>
           <Icon name='delete' />
-        </div>
+        </CloseBox>
       </BarProductFilters>
 
       <Grid columns={{ '@initial': '1', '@md': '2', '@lg': '3' }} gapX='50'>
