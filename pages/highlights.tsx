@@ -8,11 +8,12 @@ interface Props {
 }
 
 const Highlights = ({ highlights }: Props) => {
+  const { length } = highlights
 
   return (
     <>
       {highlights.map((it, index,) => (
-        <Highlight key={index} highlight={it} />
+        <Highlight key={index} highlight={it} isLast={index === length - 1} />
       ))}
     </>
   )

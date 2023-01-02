@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import Row from '~/primitive/Row'
 import Box from '~/primitive/Box'
-import { CartRoute, ProductsRoute, RootRoute, } from '~/routes'
+import { CartRoute, HighlightsRoute, ProductsRoute, RootRoute, } from '~/routes'
 import NavbarItem from './NavbarItem'
 import Text from '~/primitive/Text'
 import Icon from '~/primitive/Icon'
@@ -46,6 +46,7 @@ const Navbar = () => {
       </Box>
       <Row horizontal='center' css={{ flex: 1, }}>
         <NavbarItem label='Products' route={ProductsRoute} />
+        <NavbarItem label='Highlights' route={HighlightsRoute} />
         {!envs.ffHideCart && <NavbarItem label='Cart' route={CartRoute} />}
       </Row>
       <Row vertical='center'>

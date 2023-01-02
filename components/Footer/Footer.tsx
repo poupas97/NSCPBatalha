@@ -31,7 +31,7 @@ const CopyrightBox = styled(Box, {
 const Footer = () => {
   return (
     <Root >
-      <Grid columns='3' gapX='20'>
+      <Grid columns={3} gapX={20}>
         <GridItem>
           <Text>Contrary to popular belief, Lorem Ipsum is not simply random text.</Text>
           <Text>It has roots in a piece of classical Latin literature from 45 BC</Text>

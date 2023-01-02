@@ -15,6 +15,7 @@ const { styled, keyframes } = createStitches({
       '10': '10px',
       '15': '15px',
       '20': '20px',
+      '30': '30px',
       '50': '50px',
     },
 

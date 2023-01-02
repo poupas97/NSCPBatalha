@@ -10,7 +10,7 @@ interface Props {
 
 const ProductGridMinions = ({ images, setCurrentImage }: Props) => {
   return (
-    <Grid columns={{ '@initial': '3', '@md': '2', }} gapX='20' gapY='20'>
+    <Grid columns={{ '@initial': 3, '@md': 2, }} gapX={20} gapY={20}>
       {images.map((image,) => (
         <GridItem key={image}>
           <Box onClick={() => setCurrentImage(image)}>

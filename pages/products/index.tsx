@@ -6,6 +6,7 @@ import ProductGrid from '~/components/ProductGrid'
 import useFetch from '~/hooks/useFetch'
 import Grid, { GridItem } from '~/primitive/Grid'
 import Icon from '~/primitive/Icon'
+import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
 import { styled } from '~/theme'
 import { IProduct } from '~/types'
@@ -123,7 +124,7 @@ const Products = () => {
         </CloseBox>
       </BarProductFilters>
 
-      <Grid columns={{ '@initial': '1', '@md': '2', '@lg': '3' }} gapX='50'>
+      <Grid columns={{ '@initial': 1, '@md': 2, '@lg': 3 }} gapX={50}>
         <GridItemProductFilters>
           <ProductFilters
             onClickCategories={onClickCategories}
@@ -132,15 +133,18 @@ const Products = () => {
             setSearch={setSearch}
           />
         </GridItemProductFilters>
-        <GridItem colSpan={{ '@initial': '1', '@lg': '2' }}>
+        <GridItem colSpan={{ '@initial': 1, '@lg': 2 }}>
           {state.loading ? <Loading size='50' /> :
             <>
-              <Text type='4' css={{ marginBottom: '$20' }}>
-                {`Showing from ${1 + PAGE_SIZE * page
-                  } to ${filteredProductsLength < PAGE_SIZE * page + PAGE_SIZE ?
-                    filteredProductsLength : PAGE_SIZE * page + PAGE_SIZE
-                  } items in total, of ${filteredProductsLength}`}
-              </Text>
+              <Row horizontal='spaceBetween' css={{ marginBottom: '$20', }}>
+                <Text type='4' >
+                  {`Showing from ${1 + PAGE_SIZE * page
+                    } to ${filteredProductsLength < PAGE_SIZE * page + PAGE_SIZE ?
+                      filteredProductsLength : PAGE_SIZE * page + PAGE_SIZE
+                    } items in total, of ${filteredProductsLength}`}
+                </Text>
+                <Text>Order by</Text>
+              </Row>
 
               <ProductGrid products={filteredProducts} pageInfo={{ page, size: PAGE_SIZE }} />
 

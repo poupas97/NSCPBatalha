@@ -35,6 +35,9 @@ const StyledBox = styled('div', {
       },
       end: {
         justifyContent: 'flex-end'
+      },
+      spaceBetween: {
+        justifyContent: 'space-between'
       }
     },
     direction: {
@@ -56,7 +59,7 @@ export interface Props {
   children: HTMLProps<HTMLDivElement>['children']
   flex?: boolean
   vertical?: 'top' | 'center' | 'bottom'
-  horizontal?: 'start' | 'center' | 'end'
+  horizontal?: 'start' | 'center' | 'end' | 'spaceBetween'
   direction?: 'column' | 'row'
   onClick?: () => void
   css?: CSS

@@ -7,3 +7,5 @@ export const ProductRoute = (id: IProduct['id']) => `${ProductsRoute}/${id}`
 
 export const CartRoute = '/cart'
 export const CheckoutRoute = `${CartRoute}/checkout`
+
+export const HighlightsRoute = '/highlights'

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Highlights from '~/components/Highlight'
 import Loading from '~/components/Loading'
 import ProductGrid from '~/components/ProductGrid'
 import Slider from '~/components/Slider'
@@ -30,9 +29,7 @@ const Home = () => {
     <>
       <Slider />
 
-      {/* <Highlights /> */}
-
-      <Grid columns='3' css={{ marginVertical: '$20' }}>
+      <Grid columns={3} css={{ marginVertical: '$20' }}>
         <GridItem horizontal='center'>
           <Filter type='7' bold onClick={() => setFilter(1)} active={filter === 1}>Best Sellers</Filter>
         </GridItem>
@@ -48,7 +45,7 @@ const Home = () => {
         <Loading size='50' />
       ) : (
         <ProductGrid
-          columns='4'
+          columns={4}
           products={state.data?.products.slice(1 * filter, 6 * filter) || []}
           pageInfo={{ page: 0, size: 1000 }}
         />

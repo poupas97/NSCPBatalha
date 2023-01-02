@@ -1,5 +1,9 @@
 export interface IHighlight {
-  id: string
-  date: string
+  metadata: {
+    title: string,
+    date: 'string',
+    images: string[],
+    description: string[]
+  },
   content: string
-}
+};
