@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '~/primitive/Box'
 import Icon from '~/primitive/Icon'
 import Text from '~/primitive/Text'
@@ -21,7 +21,8 @@ const StyledDiv = styled('div', {
         display: 'none',
       },
       true: {
-        display: 'block',
+        display: 'flex',
+        alignItems: 'center',
       },
     }
   }
@@ -32,28 +33,46 @@ const StyledContent = styled('div', {
   backgroundColor: 'white',
   padding: '$20',
   width: '60%',
-  top: '25%',
   left: '50%',
   transform: 'translate(-50%, 0%)',
+  overflowY: 'auto',
 })
 
-interface Props {
+type Props = {
   children: JSX.Element
-  trigger: JSX.Element
   title: string
-}
+} & ({
+  trigger: JSX.Element
+  isOpen?: never
+  onChange?: never
+} | {
+  trigger?: never
+  isOpen: boolean
+  onChange: (_: boolean) => void
+})
 
-const Modal = ({ children, trigger, title }: Props) => {
+const MyModal = ({ children, trigger, title, isOpen, onChange }: Props) => {
   const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (isOpen === undefined) return
+
+    setOpen(isOpen)
+  }, [isOpen])
+
+  const handleChange = () => {
+    onChange?.(false)
+    setOpen(false)
+  }
 
   return (
     <>
       <div onClick={() => setOpen(true)}>
         {trigger}
       </div>
-      <StyledDiv open={open} onClick={() => setOpen(false)}>
+      <StyledDiv open={open} onClick={handleChange}>
         <StyledContent>
-          <div style={{ position: 'absolute', left: '96%' }}>
+          <div style={{ position: 'absolute', left: '96%', cursor: 'pointer' }}>
             <Icon name='delete' />
           </div>
           <Text type='7'>{title}</Text>
@@ -66,4 +85,4 @@ const Modal = ({ children, trigger, title }: Props) => {
   )
 }
 
-export default Modal
+export default MyModal

@@ -73,7 +73,7 @@ const FormDropdown = <T extends ObjectOfAny>(props: Props<T>) => {
           ))}
         </Select>
       ) : (
-        <Grid columns='6' gapX='20' gapY='20'>
+        <Grid columns={6} gapX={20} gapY={20}>
           {dropdown.options.map((item,) => (
             <GridItem key={item.value}>
               <Text onClick={onClick(item.value)} bold={item.value === currentValue}>{item.label}</Text>

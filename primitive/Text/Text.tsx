@@ -10,6 +10,7 @@ export interface Props {
   onClick?: () => void
   css?: CSS
   className?: string
+  as?: 'p'
 }
 
 const StyledSpan = styled('span', {

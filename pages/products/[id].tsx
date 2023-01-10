@@ -16,6 +16,7 @@ import Row from '~/primitive/Row'
 import Text from '~/primitive/Text'
 import { styled } from '~/theme'
 import { CartItem, IProduct } from '~/types'
+import { envs } from '~/utils/env'
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL',]
 
@@ -75,12 +76,12 @@ const Product = () => {
         </div>
         <Text bold type='7' css={{ marginLeft: '$20' }}>{state.data.title}</Text>
       </Row>
-      <Grid columns={{ '@initial': '1', '@md': '6', }} gapX='20'>
+      <Grid columns={{ '@initial': 1, '@md': 6, }} gapX={20}>
         <LargeScreeProductMinions>
           <ProductGridMinions images={state.data.images} setCurrentImage={setCurrentImage} />
         </LargeScreeProductMinions>
 
-        <GridItem colSpan={{ '@initial': '1', '@md': '3', }} >
+        <GridItem colSpan={{ '@initial': 1, '@md': 3, }}>
           <Box flex vertical='center'>
             <Image src={currentImage || ''} alt="current product image" respect="width" />
           </Box>
@@ -91,27 +92,31 @@ const Product = () => {
           <ProductGridMinions images={state.data.images} setCurrentImage={setCurrentImage} />
         </SmallScreeProductMinions>
 
-        <GridItem colSpan={{ '@initial': '1', '@md': '2', }} >
+        <GridItem colSpan={{ '@initial': 1, '@md': 2 }}>
           <Text bold>Description</Text>
           <Text>{state.data.description}</Text>
-          <Form
-            ref={ref}
-            validationSchema={getValidationSchema()}
-            items={[{
-              type: 'dropdown',
-              field: 'size',
-              label: 'Sizes',
-              options: SIZES.map((it) => ({ label: it, value: it })),
-            },
-            {
-              type: 'number',
-              field: 'quantity',
-              label: 'Quantity',
-              min: 1,
-            }]}
-          />
           <Text bold>{`€ ${state.data.price}`}</Text>
-          <Button text='+ Add to cart' onClick={addToCart} />
+
+          {!envs.ffHideCart && <>
+            <Form
+              ref={ref}
+              validationSchema={getValidationSchema()}
+              items={[{
+                type: 'dropdown',
+                field: 'size',
+                label: 'Sizes',
+                options: SIZES.map((it) => ({ label: it, value: it })),
+              },
+              {
+                type: 'number',
+                field: 'quantity',
+                label: 'Quantity',
+                min: 1,
+              }]}
+            />
+            <Button text='+ Add to cart' onClick={addToCart} />
+          </>}
+
         </GridItem>
       </Grid>
     </>
