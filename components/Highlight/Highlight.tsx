@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import Box from '~/primitive/Box'
 import Grid, { GridItem } from '~/primitive/Grid'
 import Image from '~/primitive/Image'
