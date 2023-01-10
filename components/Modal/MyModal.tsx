@@ -51,7 +51,7 @@ type Props = {
   onChange: (_: boolean) => void
 })
 
-const Modal = ({ children, trigger, title, isOpen, onChange }: Props) => {
+const MyModal = ({ children, trigger, title, isOpen, onChange }: Props) => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -85,4 +85,4 @@ const Modal = ({ children, trigger, title, isOpen, onChange }: Props) => {
   )
 }
 
-export default Modal
+export default MyModal
