@@ -22,7 +22,7 @@ const Container = styled(Box, {
 
 interface Props {
   highlight: IHighlight
-  isLast: boolean
+  isLast?: boolean
 }
 
 const Highlight = ({ highlight, isLast }: Props) => {

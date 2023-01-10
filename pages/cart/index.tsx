@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Modal from '~/components/Modal/modal'
+import Modal from '~/components/Modal/Modal'
 import { useCartContext } from '~/contexts/cartContext'
 import Box from '~/primitive/Box'
 import Button from '~/primitive/Button'
