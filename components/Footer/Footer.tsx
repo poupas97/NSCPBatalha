@@ -5,6 +5,7 @@ import Grid, { GridItem } from '~/primitive/Grid'
 import { styled } from '~/theme'
 
 const Root = styled(Box, {
+  position: 'relative',
   backgroundColor: 'green',
   paddingVertical: '$10',
   paddingHorizontal: '5%',
@@ -28,9 +29,29 @@ const CopyrightBox = styled(Box, {
   borderTop: '1px solid rgba(255, 255, 255, 0.2)'
 })
 
+const ImageContainer = styled('div', {
+  position: 'absolute',
+  bottom: 0,
+  right: 0,
+  background: 'green',
+  height: '100%',
+})
+
+const Image = styled('img', {
+  height: '98%',
+  opacity: 1,
+  filter: 'grayscale(100%) contrast(1.2)',
+  width: '100%',
+  mixBlendMode: 'soft-light',
+  objectFit: 'cover'
+})
+
 const Footer = () => {
   return (
-    <Root >
+    <Root>
+      <ImageContainer>
+        <Image src='images/monastery.jpeg' />
+      </ImageContainer>
       <Grid columns={3} gapX={20}>
         <GridItem>
           <Text>Contrary to popular belief, Lorem Ipsum is not simply random text.</Text>

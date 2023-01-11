@@ -12,6 +12,7 @@ import { useCartContext } from '~/contexts/cartContext'
 import { envs } from '~/utils/env'
 
 const Root = styled(Row, {
+  backgroundColor: 'white',
   boxShadow: 'grey 0px 10px 15px -5px',
   paddingVertical: '$10',
   paddingHorizontal: '5%',
