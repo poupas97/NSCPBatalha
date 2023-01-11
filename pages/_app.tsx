@@ -2,16 +2,15 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Box from '~/primitive/Box'
 import Footer from '~/components/Footer'
-import Navbar from '~/components/Navbar'
-import TopBar from '~/components/TopBar'
+import Header from '~/components/Header'
 import CartContext from '~/contexts/cartContext'
 import { styled } from '~/theme'
 import '../styles/globals.css'
 
 const Container = styled(Box, {
   position: 'relative',
-  display: 'flex',
   paddingVertical: '$50',
+  paddingTop: '200px',
   paddingHorizontal: '5%',
 
   '@sm': {
@@ -34,10 +33,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <TopBar />
 
       <CartContext>
-        <Navbar />
+        <Header />
 
         <Container>
           <Component {...pageProps} />
