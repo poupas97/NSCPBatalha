@@ -35,7 +35,7 @@ const Header = () => {
     <Root>
       <Container vertical='center'>
         <Text>It is a long established fact that a reader will</Text>
-        {!envs.ffHideCart &&
+        {!envs.ffCart &&
           <Row vertical='center' onClick={() => { }} >
             <Icon name='user' />
             <Text css={{ marginLeft: '$10' }}>Sign in</Text>
