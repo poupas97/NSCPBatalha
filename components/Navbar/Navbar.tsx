@@ -48,10 +48,10 @@ const Navbar = () => {
       <Row horizontal='center' css={{ flex: 1, }}>
         <NavbarItem label='Products' route={ProductsRoute} />
         <NavbarItem label='Highlights' route={HighlightsRoute} />
-        {!envs.ffHideCart && <NavbarItem label='Cart' route={CartRoute} />}
+        {!envs.ffCart && <NavbarItem label='Cart' route={CartRoute} />}
       </Row>
       <Row vertical='center'>
-        {envs.ffHideCart ? <></> :
+        {envs.ffCart ? <></> :
           <>
             <Icon name='cart' />
             <Text css={{ marginLeft: '$10' }}>{`(${cartValue.qtt}) € ${cartValue.amount}`}</Text>

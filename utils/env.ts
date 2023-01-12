@@ -5,5 +5,5 @@ const toBoolean = (value: string | undefined) => {
 }
 
 export const envs = {
-  ffHideCart: toBoolean(process.env.NEXT_PUBLIC_FF_HIDE_CART)
+  ffCart: toBoolean(process.env.NEXT_PUBLIC_FF_CART)
 }
