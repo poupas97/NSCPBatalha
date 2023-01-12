@@ -29,6 +29,7 @@ const BarProductFilters = styled('div', {
   top: '$20',
   boxShadow: 'grey 15px 10px 15px -5px',
   flexDirection: 'row',
+  marginTop: '170px',
 
   '@initial': {
     display: 'flex',
