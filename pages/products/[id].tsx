@@ -97,7 +97,7 @@ const Product = () => {
           <Text>{state.data.description}</Text>
           <Text bold>{`€ ${state.data.price}`}</Text>
 
-          {!envs.ffCart && <>
+          {envs.ffCart && <>
             <Form
               ref={ref}
               validationSchema={getValidationSchema()}
